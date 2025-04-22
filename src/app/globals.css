@@ -1,5 +1,4 @@
-@tailwind utilities;
-/* Paleta personalizada con variables CSS para modo claro/oscuro */
+@import "tailwindcss";
 @layer base {
   :root {
     --color-primary: #2563EB;

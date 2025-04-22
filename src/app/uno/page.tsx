@@ -5,7 +5,7 @@ const ThemeSwitcher = () => {
 
   return (
     <div>
-      <p>El tema actual </p>
+      <p>page uno</p>
       <ThemeToggle />
     </div>
   );
