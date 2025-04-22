@@ -22,6 +22,8 @@
   }
 
   body {
-    @apply bg-background text-text transition-colors duration-300;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: color 300ms, background-color 300ms;
   }
 }
