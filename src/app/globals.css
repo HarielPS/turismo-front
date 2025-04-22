@@ -1,26 +1,27 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@tailwind utilities;
+/* Paleta personalizada con variables CSS para modo claro/oscuro */
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-primary: #2563EB;
+    --color-secondary: #06f3a4;
+    --color-accent: #f6cd26;
+    --color-bg: #ffffff;
+    --color-text: #1f2937;
+    --color-text-secondary: #757575;
+    --color-detail: #E5E7EB;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .dark {
+    --color-primary: #3B82F6;
+    --color-secondary: #06BC167;
+    --color-accent: #FBBF24;
+    --color-bg: #111827;
+    --color-text: #F9FAFB;
+    --color-text-secondary: #D6D6D6;
+    --color-detail: #374151;
+  }
+
+  body {
+    @apply bg-background text-text transition-colors duration-300;
+  }
 }
