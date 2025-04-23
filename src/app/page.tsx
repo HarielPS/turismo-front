@@ -1,12 +1,16 @@
 "use client";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import Navbar from "@/components/landing/navbar";
+import Principal from "@/components/landing/principal";
 
 const ThemeSwitcher = () => {
 
   return (
     <div>
-      <p>El tema actual </p>
-      <ThemeToggle />
+      <Navbar />
+      <Principal />
+      <div className="p-10">
+        
+      </div>
     </div>
   );
 };

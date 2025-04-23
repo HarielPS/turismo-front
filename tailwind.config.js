@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx}", // Asegúrate de incluir la carpeta 'app' si la tienes
+    "./app/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {
