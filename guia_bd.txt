@@ -105,7 +105,7 @@ Alimentos:
     *Subtipo (ej. Barbacoa, Antojitos, Pizzería) (ref a diccionario si existiera me gustaria)
     *popularidad (promedio usuarios que la usaron)
 
-Tabla 3: Hoteles
+Hoteles
     - Id
     - Nombre
     - Ubicación
@@ -125,7 +125,7 @@ Nivel:
 
 Atributos:
     - Id (sera un numero como 1,2,3,..)
-    -Nombre
+    -Nombre (sera el nombre de las categorias,tipo y subtipo esta en la pagina 47-54)(ej.sitios naturales, montañas,cerros,Museos y otros,etc..)
     -Nivel (sera un int referente a la tabla Nivel)
 
 Categoria_hotel:

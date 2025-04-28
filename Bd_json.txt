@@ -1,0 +1,218 @@
+nivel:
+[
+  { "id": 1, "nombre": "Categoría" },
+  { "id": 2, "nombre": "Tipo" },
+  { "id": 3, "nombre": "Subtipo" }
+]
+
+
+Categoria_hotel:
+[
+  { "id": 1, "nombre": "1 estrella" },
+  { "id": 2, "nombre": "2 estrellas" },
+  { "id": 3, "nombre": "3 estrellas" },
+  { "id": 4, "nombre": "4 estrellas" },
+  { "id": 5, "nombre": "5 estrellas" },
+  { "id": 6, "nombre": "N/A" }
+]
+
+Tipo_Servicio_alimento (faltan)
+[
+  { "id": 1, "nombre": "Restaurante" },
+  { "id": 2, "nombre": "Cafetería" },
+  { "id": 3, "nombre": "Fuente de sodas" },
+  { "id": 4, "nombre": "Establecimiento de tortas" },
+  { "id": 5, "nombre": "Tienda de zumos" }
+]
+
+Tipo_Alimento
+[
+  { "id": 1, "nombre": "Nacional" },
+  { "id": 2, "nombre": "Internacional" },
+  { "id": 3, "nombre": "Local" }
+]
+
+Tipo_pago
+[
+  { "id": 1, "nombre": "Efectivo" },
+  { "id": 2, "nombre": "Tarjeta débito" },
+  { "id": 3, "nombre": "Tarjeta crédito" }
+]
+
+Localidad (faltan)
+[
+  { "id": 1, "nombre": "San Martin y Cabecera Municipal" },
+  { "id": 2, "nombre": "Cañada de Cisneros" },
+  { "id": 3, "nombre": "Ricardo Flores Magón" },
+  { "id": 4, "nombre": "San Mateo Xoloc" },
+  { "id": 5, "nombre": "Santiago Cuautlalpan" },
+  { "id": 6, "nombre": "La Concepción" },
+  { "id": 7, "nombre": "San Sebastián" },
+  { "id": 8, "nombre": "San Miguel Cañadas" }
+]
+
+Tipo_hotel
+[
+  { "id": 1, "nombre": "Casa de campo" },
+  { "id": 2, "nombre": "Hotel" },
+  { "id": 3, "nombre": "Hotel-Boutique" },
+  { "id": 4, "nombre": "Posada" },
+  { "id": 5, "nombre": "Hostal" }
+]
+
+Atributos:
+[
+  { "id": 1, "nombre": "Sitios Naturales", "nivel": 1 },
+  { "id": 2, "nombre": "Montañas", "nivel": 2 },
+  { "id": 3, "nombre": "Cerros", "nivel": 3 },
+  { "id": 4, "nombre": "Ríos", "nivel": 3 },
+  { "id": 5, "nombre": "Cascadas", "nivel": 3 },
+  { "id": 6, "nombre": "Lagos", "nivel": 3 },
+  { "id": 7, "nombre": "Cuevas", "nivel": 3 },
+  { "id": 8, "nombre": "Costas", "nivel": 3 },
+  { "id": 9, "nombre": "Formaciones geológicas", "nivel": 3 },
+  { "id": 10, "nombre": "Flora y fauna", "nivel": 3 },
+  
+  { "id": 11, "nombre": "Patrimonio Histórico", "nivel": 1 },
+  { "id": 12, "nombre": "Arquitectura y espacios urbanos", "nivel": 2 },
+  { "id": 13, "nombre": "Plazas", "nivel": 3 },
+  { "id": 14, "nombre": "Calles históricas", "nivel": 3 },
+  { "id": 15, "nombre": "Conjuntos arquitectónicos", "nivel": 3 },
+  { "id": 16, "nombre": "Puentes", "nivel": 3 },
+  { "id": 17, "nombre": "Monumentos históricos", "nivel": 3 },
+  { "id": 18, "nombre": "Iglesias y templos", "nivel": 3 },
+  
+  { "id": 19, "nombre": "Manifestaciones Culturales", "nivel": 1 },
+  { "id": 20, "nombre": "Museos y otros", "nivel": 2 },
+  { "id": 21, "nombre": "Museos de sitio", "nivel": 3 },
+  { "id": 22, "nombre": "Museos temáticos", "nivel": 3 },
+  { "id": 23, "nombre": "Museos históricos", "nivel": 3 },
+  { "id": 24, "nombre": "Centros culturales", "nivel": 3 },
+  { "id": 25, "nombre": "Bibliotecas", "nivel": 3 },
+  
+  { "id": 26, "nombre": "Folklore", "nivel": 2 },
+  { "id": 27, "nombre": "Ferias y mercados", "nivel": 3 },
+  { "id": 28, "nombre": "Danzas", "nivel": 3 },
+  { "id": 29, "nombre": "Música tradicional", "nivel": 3 },
+  { "id": 30, "nombre": "Teatro popular", "nivel": 3 },
+  { "id": 31, "nombre": "Cuentos y leyendas", "nivel": 3 },
+  
+  { "id": 32, "nombre": "Gastronomía", "nivel": 1 },
+  { "id": 33, "nombre": "Platos y productos típicos", "nivel": 2 },
+  { "id": 34, "nombre": "Bebidas típicas", "nivel": 2 },
+  
+  { "id": 35, "nombre": "Artesanía", "nivel": 2 },
+  { "id": 36, "nombre": "Textiles", "nivel": 3 },
+  { "id": 37, "nombre": "Cerámica", "nivel": 3 },
+  { "id": 38, "nombre": "Joyería", "nivel": 3 },
+  { "id": 39, "nombre": "Tallado en madera", "nivel": 3 },
+  { "id": 40, "nombre": "Otros oficios artesanales", "nivel": 3 },
+  
+  { "id": 41, "nombre": "Acontecimientos Programados", "nivel": 1 },
+  { "id": 42, "nombre": "Eventos", "nivel": 2 },
+  { "id": 43, "nombre": "Festivales", "nivel": 3 },
+  { "id": 44, "nombre": "Fiestas religiosas", "nivel": 3 },
+  { "id": 45, "nombre": "Ferias", "nivel": 3 },
+  
+  { "id": 46, "nombre": "Actividades Especiales", "nivel": 1 },
+  { "id": 47, "nombre": "De aventura", "nivel": 2 },
+  { "id": 48, "nombre": "Senderismo", "nivel": 3 },
+  { "id": 49, "nombre": "Escalada", "nivel": 3 },
+  { "id": 50, "nombre": "Ciclismo", "nivel": 3 },
+  
+  { "id": 51, "nombre": "Ecoturismo", "nivel": 2 },
+  { "id": 52, "nombre": "Observación de flora y fauna", "nivel": 3 },
+  { "id": 53, "nombre": "Campismo", "nivel": 3 }
+]
+
+servicio:
+[
+  { "id": 1, "nombre": "Ex colegio de San Francisco Javier - Museo Nacional del Virreinato", "localidad": 1, "categoria": 2, "tipo": 20, "subtipo": 21, "jerarquia": 4, "tangible": true },
+  { "id": 2, "nombre": "Cabecera Municipal", "localidad": 1, "categoria": 2, "tipo": 12, "subtipo": 13, "jerarquia": 3, "tangible": true },
+  { "id": 3, "nombre": "Mercado Municipal", "localidad": 1, "categoria": 3, "tipo": 26, "subtipo": 27, "jerarquia": 2, "tangible": true },
+  { "id": 4, "nombre": "Mercado de Artesanías", "localidad": 1, "categoria": 3, "tipo": 26, "subtipo": 27, "jerarquia": 2, "tangible": true },
+  { "id": 5, "nombre": "Festival de Música Antigua", "localidad": 1, "categoria": 5, "tipo": 42, "subtipo": 43, "jerarquia": 2, "tangible": false },
+  { "id": 6, "nombre": "Fiesta del Señor del Nicho", "localidad": 1, "categoria": 5, "tipo": 42, "subtipo": 44, "jerarquia": 2, "tangible": false },
+  { "id": 7, "nombre": "Semana Cultural", "localidad": 1, "categoria": 5, "tipo": 42, "subtipo": 43, "jerarquia": 2, "tangible": false },
+  { "id": 8, "nombre": "Desfile y Festividad del Día de Muertos", "localidad": 1, "categoria": 5, "tipo": 42, "subtipo": 43, "jerarquia": 2, "tangible": false },
+  
+  { "id": 9, "nombre": "El Ahuehuete de Lanzarote", "localidad": 2, "categoria": 1, "tipo": 2, "subtipo": 3, "jerarquia": 2, "tangible": true },
+  
+  { "id": 10, "nombre": "Parque Ecoturístico El Axolotl", "localidad": 2, "categoria": 2, "tipo": 12, "subtipo": 13, "jerarquia": 2, "tangible": true },
+  
+  { "id": 11, "nombre": "Sierra de Tepotzotlán", "localidad": 5, "categoria": 1, "tipo": 2, "subtipo": 3, "jerarquia": 3, "tangible": true },
+  
+  { "id": 12, "nombre": "Sendero Interpretativo 'El Pino'", "localidad": 5, "categoria": 1, "tipo": 2, "subtipo": 3, "jerarquia": 3, "tangible": true },
+  
+  { "id": 13, "nombre": "Mirador de Santiago", "localidad": 5, "categoria": 1, "tipo": 2, "subtipo": 3, "jerarquia": 3, "tangible": true },
+  
+  { "id": 14, "nombre": "Mercado de Santiago Cuautlalpan", "localidad": 5, "categoria": 3, "tipo": 26, "subtipo": 27, "jerarquia": 2, "tangible": true },
+  
+  { "id": 15, "nombre": "Fiesta de Santiago Apóstol", "localidad": 5, "categoria": 5, "tipo": 42, "subtipo": 44, "jerarquia": 2, "tangible": false },
+  
+  { "id": 16, "nombre": "Parque Ecológico Xochitla", "localidad": 1, "categoria": 1, "tipo": 2, "subtipo": 6, "jerarquia": 4, "tangible": true },
+  
+  { "id": 17, "nombre": "Balneario El Arenal", "localidad": 6, "categoria": 1, "tipo": 2, "subtipo": 6, "jerarquia": 2, "tangible": true },
+  
+  { "id": 18, "nombre": "Iglesia de San Mateo Xoloc", "localidad": 4, "categoria": 2, "tipo": 12, "subtipo": 18, "jerarquia": 3, "tangible": true },
+  
+  { "id": 19, "nombre": "Fiesta de San Mateo Xoloc", "localidad": 4, "categoria": 5, "tipo": 42, "subtipo": 44, "jerarquia": 2, "tangible": false },
+  
+  { "id": 20, "nombre": "Temazcal San Miguel", "localidad": 8, "categoria": 1, "tipo": 2, "subtipo": 7, "jerarquia": 2, "tangible": true },
+  
+  { "id": 21, "nombre": "Fiesta Patronal de San Miguel Arcángel", "localidad": 8, "categoria": 5, "tipo": 42, "subtipo": 44, "jerarquia": 2, "tangible": false },
+  
+  { "id": 22, "nombre": "Parque Ecoturístico Abekany", "localidad": 2, "categoria": 1, "tipo": 2, "subtipo": 6, "jerarquia": 2, "tangible": true },
+  
+  { "id": 23, "nombre": "Taller de Conservación Ambiental", "localidad": 2, "categoria": 4, "tipo": 47, "subtipo": 52, "jerarquia": 2, "tangible": true }
+]
+
+
+Hoteles:
+[
+  { "id": 1, "nombre": "Cabaña Club Campestre Vitela", "ubicacion": "Guadalupe Victoria No. 65, Cañada de Cisneros", "tipo_hotel": 1, "categoria": 6, "capacidad": 144 },
+  { "id": 2, "nombre": "Abekany Camp", "ubicacion": "Carretera Arcos del Sitio-Dolores Km 5, Cañada de Cisneros", "tipo_hotel": 5, "categoria": 6, "capacidad": 248 },
+  { "id": 3, "nombre": "Arcos del Sitio", "ubicacion": "Carretera Arcos del Sitio, Cañada de Cisneros", "tipo_hotel": 5, "categoria": 6, "capacidad": 56 },
+  { "id": 4, "nombre": "Montunfa", "ubicacion": "Cañada de Cisneros, calle principal 100m del panteón B. Santa Rita El Alto", "tipo_hotel": 5, "categoria": 6, "capacidad": 60 },
+  { "id": 5, "nombre": "Axolotl", "ubicacion": "Calle Juan de la Barrera No.7 B. Santa Rita El Bajo, Cañada de Cisneros", "tipo_hotel": 5, "categoria": 6, "capacidad": 80 },
+  { "id": 6, "nombre": "El Ahuehuete de Lanzarote", "ubicacion": "Desviación a Lanzarote Km 23 carretera secundaria No. 5", "tipo_hotel": 5, "categoria": 6, "capacidad": 100 },
+  
+  { "id": 7, "nombre": "Hotel Finca Mexicana", "ubicacion": "Calle San Francisco No. 12, Santiago Cuautlalpan", "tipo_hotel": 2, "categoria": 2, "capacidad": 70 },
+  { "id": 8, "nombre": "Hotel Finca Pelanchito", "ubicacion": "Calle Netzahualcóyotl s/n, Santiago Cuautlalpan", "tipo_hotel": 2, "categoria": 2, "capacidad": 10 },
+  
+  { "id": 9, "nombre": "Hotel Principal", "ubicacion": "Calle Eva Samano de López Mateos No. 7, San Martín", "tipo_hotel": 2, "categoria": 3, "capacidad": 50 },
+  { "id": 10, "nombre": "Hotel Pepe’s & RV Park", "ubicacion": "Av. Eva Samano de López Mateos 62, San Martín", "tipo_hotel": 2, "categoria": 3, "capacidad": 50 },
+  { "id": 11, "nombre": "Hotel Posada San José", "ubicacion": "Calle Plaza Virreinal No. 13, San Martín", "tipo_hotel": 2, "categoria": 3, "capacidad": 20 },
+  { "id": 12, "nombre": "Hotel Boutique Puerta Al Virreinato", "ubicacion": "Av. Licenciado Benito Juárez, San Martín", "tipo_hotel": 3, "categoria": 2, "capacidad": 20 },
+  
+  { "id": 13, "nombre": "Posada Familiar García", "ubicacion": "Barrio San Martín, Libramiento Sur s/n", "tipo_hotel": 4, "categoria": 3, "capacidad": 60 },
+  { "id": 14, "nombre": "Posada Casa San Juan", "ubicacion": "Av. Insurgentes No. 8, San Martín", "tipo_hotel": 4, "categoria": 3, "capacidad": 50 },
+  { "id": 15, "nombre": "Posada El Sol", "ubicacion": "Av. Insurgentes No. 14 esquina Mariano Galván", "tipo_hotel": 4, "categoria": 2, "capacidad": 35 },
+  
+  { "id": 16, "nombre": "Hotel Las Fuentes", "ubicacion": "Cda. Matamoros 10, Tlacateco", "tipo_hotel": 2, "categoria": 2, "capacidad": 20 },
+  { "id": 17, "nombre": "Posada San Francisco", "ubicacion": "C. Mariano Galván Rivera 10, Texcacoa", "tipo_hotel": 4, "categoria": 4, "capacidad": 30 },
+  { "id": 18, "nombre": "Hotel Hacienda Real del Parque", "ubicacion": "Av. Lic. Benito Juárez 35, Texcacoa", "tipo_hotel": 2, "categoria": 3, "capacidad": 30 },
+  { "id": 19, "nombre": "Hotel Mansión Tepotzotlán", "ubicacion": "C. Mariano Galván Rivera 35, Tlacateco", "tipo_hotel": 2, "categoria": 5, "capacidad": 20 },
+  { "id": 20, "nombre": "Hotel Boutique El Refugio", "ubicacion": "24 de febrero, Santiago Cuautlalpan", "tipo_hotel": 3, "categoria": 4, "capacidad": 15 },
+  
+  { "id": 21, "nombre": "Campamento Xacalli", "ubicacion": "Circuito Duendes No. 98, Lomas de Santa Bertha", "tipo_hotel": 5, "categoria": 3, "capacidad": 150 },
+  
+  { "id": 22, "nombre": "Posada Santander", "ubicacion": "Av. Insurgentes 62, San Mateo Xoloc", "tipo_hotel": 4, "categoria": 3, "capacidad": 30 },
+  { "id": 23, "nombre": "Hotel Paraíso", "ubicacion": "Av. José López Portillo s/n, San Mateo", "tipo_hotel": 2, "categoria": 6, "capacidad": 50 },
+  { "id": 24, "nombre": "Hotel Boutique en Capula", "ubicacion": "José Ma. Pino Suarez 4, Capula", "tipo_hotel": 3, "categoria": 4, "capacidad": 45 },
+  { "id": 25, "nombre": "Hotel Finca Las Hortensias", "ubicacion": "Hortensia s/n, Tepotzotlán", "tipo_hotel": 2, "categoria": 3, "capacidad": 52 },
+  
+  { "id": 26, "nombre": "Hotel San Juan Bautista Tuxtepec", "ubicacion": "Manzana 010, El Trébol", "tipo_hotel": 2, "categoria": 3, "capacidad": 30 },
+  
+  { "id": 27, "nombre": "Hotel El Pecas", "ubicacion": "Calle Sor Juana Inés de la Cruz, Col. Ricardo Flores Magón", "tipo_hotel": 2, "categoria": 3, "capacidad": 15 },
+  { "id": 28, "nombre": "Posada Mágica Jenny", "ubicacion": "Manzana 006, Ricardo Flores Magón", "tipo_hotel": 4, "categoria": 3, "capacidad": 15 },
+  { "id": 29, "nombre": "Posada Arny", "ubicacion": "Venustiano Carranza 4, Ricardo Flores Magón", "tipo_hotel": 4, "categoria": 3, "capacidad": 20 },
+  { "id": 30, "nombre": "Hostal Casa Toscana", "ubicacion": "Av. Profa. Ma Dolores Trejo 56, Ricardo Flores Magón", "tipo_hotel": 5, "categoria": 3, "capacidad": 15 },
+  
+  { "id": 31, "nombre": "Posada Colín", "ubicacion": "Manzana 022, Texcacoa", "tipo_hotel": 4, "categoria": 3, "capacidad": 20 },
+  { "id": 32, "nombre": "Posada Mayin", "ubicacion": "Del Balneario No. 6, Texcacoa", "tipo_hotel": 4, "categoria": 2, "capacidad": 10 },
+  { "id": 33, "nombre": "Gran Hotel Real", "ubicacion": "Av. Lic. Benito Juárez 35, Texcacoa", "tipo_hotel": 2, "categoria": 3, "capacidad": 25 }
+]
+
+Alimentos (son como 200)
+
