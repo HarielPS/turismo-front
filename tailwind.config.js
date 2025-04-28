@@ -16,6 +16,7 @@ module.exports = {
         "text-secondary": "var(--color-text-secondary)",
         detail: "var(--color-detail)",
       },
+      
     },
   },
   plugins: [],

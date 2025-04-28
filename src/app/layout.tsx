@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Turismo Mágico",
   description: "Aplicación sobre turismo en pueblos magicos de México",
   icons: {
-    icon: '../public/logos/logo_light_corto.png',
+    icon: './favicon.ico',
   },
 };
 

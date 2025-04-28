@@ -1,0 +1,155 @@
+Base de Datos Schema:
+
+(-) campo que esta
+(*) campo que podriamos me gustaria meter (aunque no es necesario)
+(°) Estara a futuro
+
+
+De echo un provedor es un usuario (Se podria acotar)
+
+
+Usuario:
+    ---- Registro ---------
+    -Id
+    -nombre
+    -correo
+    -password
+    -sexo
+    -Fecha Nacimiento
+    -Telefono
+    --------- Preferencia (registo) ---------
+    -preferencias [vector a id del diccionario atributos]
+    *pref_caracteristicas [vector a id del diccionario caracteristicas]
+    *pref_alimentos [vector a id del diccionario alimentos]
+    *pref_caracteristicas [vector a id del diccionario caracteristicas]
+    --------- otro ---------
+    * Fecha de Registro
+    * Ultimo_login
+    - Foto
+    - descripcion
+    -pagos (objeto)
+       - id
+            -tipo (ref a tipo pago)
+            -numero tarjeta ()
+            -nombre en la tarjeta
+            -direccion en la tarjeta
+            -cp en la tarjeta
+            -fecha vencimiento en la tarjeta (mm/aa)
+            (pedir cvv en front)
+    -Itinerario(ruta)
+        -Id
+            - nombre
+            - fecha
+            -tipo (guardada, finalizada)
+            -Id
+                -Actividad (referencia a actividad,alimento o hotel)
+                -reserva_id(Referencia)(si tiene)
+    -Reservas
+        -Id
+        -id_actividad (referencia a actividad,alimento o hotel)
+        -Necesita_pago (true o false)
+        -pago_echo (true o false) (depende de Necesita_pago)
+        -pago(referencia al pago atributo de usuario) (depende de pago_echo)
+
+    
+
+
+
+
+Proveedor:
+    ---- Registro ---------
+    - Id
+    - Nombre_empresa
+    - Correo
+    - Password
+    - Tel
+    - Direccion
+    - personal_nombre
+    - Tipo ( Moral o Fisica)
+    * sexo (no es relevante de echo solo se aplicaria a fisica)
+    --------- otro ---------
+    * Fecha de Registro
+    * Ultimo_login
+    - Foto
+    - descripcion
+
+
+Servicio (Actividades):
+    -Id
+    -nombre
+    -localidad (referencia a tabla Localidad)
+    -Categoria
+    -Tipo
+    -Subtipo
+    -Jerarquia (es una tabla similar a nivel por lo que sera una referencia al ID que sera numerico como 1,2,3)
+    -Tangible (bool - true o false)
+    *Ubicacion (no tiene ubicacion concreta en tabla)
+    *precio_min(por ahora lo dejamos en 0 para todos)
+    *precio_max(por ahora lo dejamos en 0 para todos)
+    *Horario_inicio(null por ahora)
+    *Horario_fin(null por ahora)
+    *dias_semana( dias de semana abierto) <Array> (por ahora null)
+    *fechas_evento_inicio (por ahora null)
+    *fechas_evento_fin (por ahora null)
+    *caracteristicas (actividades dentro de esa, actualmente no esta en las tablas)
+    *popularidad (promedio usuarios que la usaron)
+
+Alimentos:
+    - Id
+    - Nombre
+    - Ubicación
+    -localidad (referencia a tabla localidad)
+    -tipo_Servicio (ref a tabla Tipo_Servicio_alimento)
+    - Tipo_alimento (referencia a tabla Tipo_Alimento)
+    -Capacidad
+    *Subtipo (ej. Barbacoa, Antojitos, Pizzería) (ref a diccionario si existiera me gustaria)
+    *popularidad (promedio usuarios que la usaron)
+
+Tabla 3: Hoteles
+    - Id
+    - Nombre
+    - Ubicación
+    - tipo_hotel (ref a tabla tipo_hotel)
+    - Categoría (ref a la tabla Categoria_hotel)
+    - Capacidad
+
+    *Subtipo (ej. Familiar, de lujo, de aventura) (ref a diccionario si existiera me gustaria)
+    *popularidad (promedio usuarios que la usaron)
+
+
+////////// Diccionarios ////////
+
+Nivel:
+    -Id (sera un numero como 1,2,3,..)
+    -nombre (categoria,tipo o subtipo) (solo tendra esos tres valores)
+
+Atributos:
+    - Id (sera un numero como 1,2,3,..)
+    -Nombre
+    -Nivel (sera un int referente a la tabla Nivel)
+
+Categoria_hotel:
+    -id
+    - nombre (1 estrella, 2 estrellas, ...., N/A)
+
+Tipo_Servicio_alimento
+    -Id
+    -nombre (cafeteria, Restaurante,...)
+
+Tipo_Alimento
+    -id
+    -nombre (Nacional,Internacional)
+
+
+tipo_pago: (este diccionario se puede ahorrar discutir)
+    - id (1,2,3,4)
+    - nombre (efectivo, tarjeta_debito, tarjeta_credito)
+
+Localidad
+    -id
+    -nombre (San Martin y Cabecera Municipal, Cañada cisneros)
+
+Tipo_hotel
+    - id
+    - nombre (casa de campo, Hotel,Hotel-Boutiq
+ue, ...)

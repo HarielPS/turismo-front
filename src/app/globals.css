@@ -1,5 +1,10 @@
 @import "tailwindcss";
+
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   :root {
     --color-primary: #2563EB;
     --color-secondary: #06f3a4;
@@ -86,12 +91,20 @@
     .text-text {
       color: var(--color-text) !important;
     }
+
+    .text-background {
+      color: var(--color-bg) !important;
+    }
   
     .text-text-secondary {
       color: var(--color-text-secondary) !important;
     }
   
     /* Borders */
+    .border-text {
+      border-color: var(--color-text) !important;
+    }
+
     .border-primary {
       border-color: var(--color-primary) !important;
     }
@@ -135,6 +148,32 @@
 
     .hover\:text-text:hover {
       color: var(--color-text) !important;
+    }
+
+    @media (max-width: 424px) {
+      .xs\:mt-8 { margin-top: 2rem !important; }
+      .xs\:ml-0 { margin-left: 0 !important; }
+      .xs\:flex-col {flex-direction: column !important;}
+      .xs\:w-full { width: 100% !important; }
+      .xs\:hidden { display: none !important; }
+      .xs\:hidden { display: none !important; }
+      .xs\:text-2xl { 
+        font-size: 1.5rem !important; /* 24px */
+        line-height: 2rem !important; /* 32px */
+      }
+      .xs\:text-sm {
+        font-size: 0.875rem !important;  /* 14px */
+        line-height: 1.25rem !important; /* 20px */
+      }
+      .xs\:text-base {
+        font-size: 1rem !important;      /* 16px */
+        line-height: 1.5rem !important;  /* 24px */
+      }
+      .xs\:text-3xl {
+        font-size: 1.875rem !important;   /* 30px */
+        line-height: 2.25rem !important;  /* 36px */
+      }
+
     }
   }
 }
