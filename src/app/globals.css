@@ -74,6 +74,19 @@
     .hover\:shadow-accent:hover {
       box-shadow: 0 0px 6px 0px var(--color-text) !important;
     }
+
+    /* ring */
+    .ring-text {
+      --tw-ring-color: var(--color-text) !important;
+    }
+
+    .ring-detail {
+      --tw-ring-color: var(--color-detail) !important;
+    }
+
+    .ring-text-secondary {
+      --tw-ring-color: var(--color-text-secondary) !important;
+    }
   
     /* Text colors */
     .text-primary {
