@@ -34,7 +34,7 @@ const FormInicioSession: React.FC = () => {
     if (data.role === "proveedor") {
       router.push("/Proveedor");
     } else {
-      router.push("/Usuario");
+      router.push("/Usuario/mapa");
     }
   };
   
@@ -91,7 +91,7 @@ const FormInicioSession: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+          className="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors cursor-pointer"
         >
           Acceso
         </button>

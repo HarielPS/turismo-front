@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import LogoutButton from "@/components/sidebar/configuration_user/Button_Logout";
+import LogoutButton from "@/components/perfil/Button_Logout";
 
 export default function ProveedorLayout({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);

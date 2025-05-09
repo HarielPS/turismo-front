@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 
 interface FormData {
   nombre_viajero: string;
+  primer_Apellido_viajero: string;
+  segundo_Apellido_viajero: string;
   correo_viajero: string;
   pass_viajero: string;
   sexo_viajero: string;
@@ -20,6 +22,8 @@ const FormInicioRegistro = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [form, setForm] = useState<FormData>({
     nombre_viajero: "",
+    primer_Apellido_viajero: "",
+    segundo_Apellido_viajero: "",
     correo_viajero: "",
     pass_viajero: "",
     sexo_viajero: "",
@@ -40,13 +44,15 @@ const FormInicioRegistro = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_RUTA_BACK}/auth/registro-usuario`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_RUTA_BACK}/auth/register-usuario`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(form),
       });
+      // console.log("URL de la API:", `${process.env.NEXT_PUBLIC_RUTA_BACK}/auth/registro-usuario`);
+      // console.log("Datos enviados:", form); 
   
       if (response.ok) {
         const data = await response.json();
@@ -91,18 +97,47 @@ const FormInicioRegistro = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <label className="block text-sm mb-1" htmlFor="nombre_viajero">Nombre</label>
+        
+        {/* campo primer nombre */}
+        <label className="block text-sm mb-1" htmlFor="nombre_viajero">Nombre(s)</label>
         <input
           type="text"
           name="nombre_viajero"
           id="nombre_viajero"
           className="w-full p-2 rounded bg-detail border border-text text-text mb-4"
-          placeholder="Tu nombre"
+          placeholder="Tu nombre(s)"
           value={form.nombre_viajero}
           onChange={handleChange}
           required
         />
 
+        {/* Campo primer apellido */}
+        <label className="block text-sm mb-1" htmlFor="nombre_viajero">Primer apellido</label>
+        <input
+          type="text"
+          name="primer_Apellido_viajero"
+          id="primer_Apellido_viajero"
+          className="w-full p-2 rounded bg-detail border border-text text-text mb-4"
+          placeholder="Tu primer apellido"
+          value={form.primer_Apellido_viajero}
+          onChange={handleChange}
+          required
+        />
+
+        {/* Campo segundo apellido */}
+        <label className="block text-sm mb-1" htmlFor="nombre_viajero">Segundo apellido</label>
+        <input
+          type="text"
+          name="segundo_Apellido_viajero"
+          id="segundo_Apellido_viajero"
+          className="w-full p-2 rounded bg-detail border border-text text-text mb-4"
+          placeholder="Tu segundo apellido"
+          value={form.segundo_Apellido_viajero}
+          onChange={handleChange}
+          required
+        />
+
+        {/* Campo correo */}
         <label className="block text-sm mb-1" htmlFor="correo_viajero">Correo</label>
         <input
           type="email"
@@ -115,6 +150,8 @@ const FormInicioRegistro = () => {
           required
         />
 
+        
+        {/* Campo contraseña */}
         <label className="block text-sm mb-1" htmlFor="pass_viajero">Contraseña</label>
         <input
           type="password"
@@ -126,9 +163,10 @@ const FormInicioRegistro = () => {
           required
         />
 
+        {/* campo sexo */}
         <label className="block text-sm mb-1" htmlFor="sexo">Sexo</label>
         <select
-          name="sexo"
+          name="sexo_viajero"
           id="sexo_viajero"
           className="w-full p-2 rounded bg-detail border border-text text-text mb-4"
           value={form.sexo_viajero}
@@ -141,10 +179,12 @@ const FormInicioRegistro = () => {
           <option value="otro">Otro</option>
         </select>
 
+        
+        {/* Campo fecha de nacimiento */}
         <label className="block text-sm mb-1" htmlFor="fecha_nacimiento">Fecha de nacimiento</label>
         <input
           type="date"
-          name="fecha_nacimiento"
+          name="fecha_nacimiento_viajero"
           id="fecha_nacimiento_viajero"
           className="w-full p-2 rounded bg-detail border border-text text-text mb-4"
           value={form.fecha_nacimiento_viajero}
@@ -154,10 +194,12 @@ const FormInicioRegistro = () => {
           required
         />
 
+      
+        {/* Campo teléfono */}
         <label className="block text-sm mb-1" htmlFor="telefono">Teléfono</label>
         <input
           type="tel"
-          name="telefono"
+          name="telefono_viajero"
           id="telefono_viajero"
           className="w-full p-2 rounded bg-detail border border-text text-text mb-4"
           placeholder="10 dígitos"
@@ -166,6 +208,8 @@ const FormInicioRegistro = () => {
           required
         />
 
+        
+        {/* Campo Terminos y Politicas */}
         <div className="flex items-start mb-4">
           <input
             id="terms"
