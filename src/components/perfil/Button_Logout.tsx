@@ -22,12 +22,20 @@ export default function LogoutButton({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  // const variantClasses = {
+  //   primary: 'bg-blue-600 hover:bg-blue-700 text-white',
+  //   secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-800',
+  //   danger: 'bg-red-600 hover:bg-red-700 text-white',
+  //   ghost: 'hover:bg-gray-100 text-gray-700',
+  // };
+
   const variantClasses = {
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white',
-    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-800',
-    danger: 'bg-red-600 hover:bg-red-700 text-white',
-    ghost: 'hover:bg-gray-100 text-gray-700',
+    primary: 'bg-primary hover:bg-primary text-background',
+    secondary: 'bg-secondary hover:bg-secondary text-background',
+    danger: 'bg-red-600 hover:bg-red-700 text-background',
+    ghost: 'bg-detail hover:bg-danger text-text',
   };
+  
 
   const handleLogout = async () => {
     setIsLoading(true);
@@ -56,6 +64,7 @@ export default function LogoutButton({
       onClick={handleLogout}
       disabled={isLoading}
       className={`
+        cursor-pointer
         ${className}
         ${variantClasses[variant]}
         flex items-center gap-2 rounded-md px-4 py-2

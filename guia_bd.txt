@@ -29,7 +29,7 @@ Usuario:
     - descripcion
     -pagos (objeto)
        - id
-            -tipo (ref a tipo pago)
+            -tipo (ref a tipo pag o)
             -numero tarjeta ()
             -nombre en la tarjeta
             -direccion en la tarjeta
@@ -77,12 +77,18 @@ Proveedor:
 Servicio (Actividades):
     -Id
     -nombre
+    -pueblo
     -localidad (referencia a tabla Localidad)
     -Categoria
     -Tipo
     -Subtipo
     -Jerarquia (es una tabla similar a nivel por lo que sera una referencia al ID que sera numerico como 1,2,3)
     -Tangible (bool - true o false)
+    -(vacio) comentario
+        -id(usuario)
+        -nombre apellido 
+        -calificacion
+        -comentario
     *Ubicacion (no tiene ubicacion concreta en tabla)
     *precio_min(por ahora lo dejamos en 0 para todos)
     *precio_max(por ahora lo dejamos en 0 para todos)
@@ -118,6 +124,10 @@ Hoteles
 
 
 ////////// Diccionarios ////////
+
+pueblo:
+    -id
+    -nombre (por ahora solo tengo tepotzotlan)
 
 Nivel:
     -Id (sera un numero como 1,2,3,..)

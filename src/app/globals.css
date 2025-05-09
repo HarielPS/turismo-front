@@ -14,6 +14,7 @@
     --color-text: #1f2937;
     --color-text-secondary: #B2B2B2;
     --color-detail: #E5E7EB;
+    --color-danger: #EF4444;
   }
 
   .dark {
@@ -25,6 +26,7 @@
     --color-text: #F9FAFB;
     --color-text-secondary: #888787;
     --color-detail: #374151;
+    --color-danger: #F87171;
   }
 
   body {
@@ -51,6 +53,10 @@
       background-color: var(--color-text) !important;
     }
 
+    .bg-text-secondary {
+      background-color: var(--color-text-secondary) !important;
+    }
+
     .bg-detail {
       background-color: var(--color-detail) !important;
     }
@@ -66,6 +72,11 @@
     .bg-background-80 {
       background-color: rgba(var(--color-bg-rgb), 0.8) !important;
     }
+
+    .bg-danger {
+      background-color: var(--color-danger) !important;
+    }
+    
 
     /* Shadows */
     .shadow-text {
@@ -142,6 +153,10 @@
     .hover\:bg-secondary:hover {
       background-color: var(--color-secondary) !important;
     }
+
+    .hover\:bg-text:hover {
+      background-color: var(--color-text) !important;
+    }
   
     .hover\:bg-accent:hover {
       background-color: var(--color-accent) !important;
@@ -162,6 +177,21 @@
     .hover\:text-text:hover {
       color: var(--color-text) !important;
     }
+
+    .hover\:text-detail :hover {
+      color: var(--color-detail) !important;
+    }
+
+    .hover\:bg-text-secondary:hover
+    {
+      background-color: var(--color-text-secondary) !important;
+    }
+
+    .hover\:bg-danger:hover {
+      background-color: var(--color-danger) !important;
+    }
+
+    /* estilo personalizado mas pequeo */
 
     @media (max-width: 424px) {
       .xs\:mt-8 { margin-top: 2rem !important; }

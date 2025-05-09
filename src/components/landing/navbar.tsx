@@ -12,19 +12,12 @@ import {
     BuildingOfficeIcon
 
 } from '@heroicons/react/24/solid';
+import { useScrollDetection } from "@/hooks/useScrollDetection";
 import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrolled = useScrollDetection(30);
 
   useEffect(() => {
     if (menuOpen) {
@@ -127,13 +120,13 @@ const Navbar: React.FC = () => {
             </ul>
 
             <ul className='mt-4'>
-              <li className='py-3'>
-                <button className='w-full px-4 py-2.5 text-sm rounded font-bold bg-detail transition-colors cursor-pointer'>
+              <li className='flex w-full py-3'>
+                <Link href="/session/Acceso?register=true" className='flex justify-center items-center w-full px-4 py-2.5 text-sm rounded font-bold bg-detail transition-colors cursor-pointer'>
                   Registro
-                </button>
+                </Link>
               </li>
-              <li className='py-3'>
-                <Link href="/session/Acceso" className='w-full px-4 py-2.5 text-sm rounded font-bold text-white bg-primary transition-colors cursor-pointer'>
+              <li className='flex py-3 w-full'>
+                <Link href="/session/Acceso" className='flex justify-center items-center w-full px-4 py-2.5 text-sm rounded font-bold text-white bg-primary transition-colors cursor-pointer'>
                   Acceso
                 </Link>
               </li>
