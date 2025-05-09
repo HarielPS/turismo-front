@@ -5,6 +5,7 @@ const Mapa = () => {
     <div>
         Mapa
         {/* Leaflet + OpenStreetMap */}
+
     </div>
   )
 }
