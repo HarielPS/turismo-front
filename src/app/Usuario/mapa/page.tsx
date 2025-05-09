@@ -4,6 +4,8 @@ const Mapa = () => {
   return (
     <div>
         Mapa
+        {/* Leaflet + OpenStreetMap */}
+
     </div>
   )
 }
