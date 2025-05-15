@@ -125,13 +125,14 @@ Hoteles
 
 ////////// Diccionarios ////////
 
-pueblo:
+pueblo: (done)
     -id
     -nombre (por ahora solo tengo tepotzotlan)
 
-Nivel:
+Nivel: 
     -Id (sera un numero como 1,2,3,..)
     -nombre (categoria,tipo o subtipo) (solo tendra esos tres valores)
+
 
 Atributos:
     - Id (sera un numero como 1,2,3,..)
@@ -155,9 +156,10 @@ tipo_pago: (este diccionario se puede ahorrar discutir)
     - id (1,2,3,4)
     - nombre (efectivo, tarjeta_debito, tarjeta_credito)
 
-Localidad
+Localidad (done)
     -id
     -nombre (San Martin y Cabecera Municipal, Cañada cisneros)
+    -pueblo 
 
 Tipo_hotel
     - id

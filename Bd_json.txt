@@ -1,4 +1,27 @@
-nivel:
+mongodb
+Perfil: admin
+key:root
+
+perfil:user
+key:user_root
+
+perfil: proveedor
+key:proveedor_root
+
+/////////////////////////////////////////////////
+perfiles de prueba:
+
+usuario:
+
+correo:
+juan@example.com
+key:
+111
+
+
+
+////////////////////////////////////////////////
+nivel: (done)
 [
   { "id": 1, "nombre": "Categoría" },
   { "id": 2, "nombre": "Tipo" },
@@ -50,6 +73,8 @@ Localidad (faltan)
   { "id": 7, "nombre": "San Sebastián" },
   { "id": 8, "nombre": "San Miguel Cañadas" }
 ]
+
+
 
 Tipo_hotel
 [

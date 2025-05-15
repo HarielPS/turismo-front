@@ -41,18 +41,18 @@ export default function Sidebar() {
     <div className={`flex h-screen bg-detail text-text transition-all duration-300 ${open ? "w-64" : "w-20"}`}>
       <div className="flex flex-col w-full">
         {/* Botón de toggle */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 ">
           {open && <h1 className="text-xl font-bold">Menu</h1>}
           <button 
             onClick={() => setOpen(!open)}
-            className="p-2 cursor-pointer rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700"
+            className="p-2 cursor-pointer rounded-lg hover:bg-text hover:text-background "
           >
             {open ? <XMarkIcon className="h-5 w-5" /> : <Bars3Icon className="h-5 w-5" />}
           </button>
         </div>
 
         {/* Menú principal */}
-        <nav className="flex-1 p-2">
+        <nav className="flex-1 p-2 ">
           <ul className="space-y-2">
             {menuItems.map((item) => (
               <li key={item.name} className="relative group hover:text-detail">
@@ -93,7 +93,7 @@ export default function Sidebar() {
         </nav>
 
         {/* Menú inferior */}
-        <div className="p-2 border-t border-gray-200 dark:border-gray-700">
+        <div className="p-2">
           <ul className="space-y-2">
             {bottomItems.map((item) => (
               <li key={item.name} className="relative group hover:text-detail">
