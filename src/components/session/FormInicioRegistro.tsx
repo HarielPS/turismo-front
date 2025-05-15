@@ -60,7 +60,7 @@ const FormInicioRegistro = () => {
         // Guardar token en cookies
         Cookies.set('token', data.token);
         // Redirigir
-          router.push('/session/Acceso/Preferencia');
+          router.push('/session/Acceso/Preferencias');
       } else {
         const errorData = await response.json();
         console.error("Error en el registro:", errorData.message);

@@ -33,7 +33,7 @@ console.log("Middleware ejecutado para", req.nextUrl.pathname);
     const { payload } = await jwtVerify(token, secret, {
         algorithms: ['HS256'], 
       });
-      console.log("Token payload:", payload);
+      // console.log("Token payload:", payload);
     // const { role } = payload as { role: string };
     const { role, sub: userId } = payload as { role: string; sub: string };
 
@@ -60,7 +60,7 @@ console.log("Middleware ejecutado para", req.nextUrl.pathname);
       }
 
       const usuario = await res.json();
-      console.log("Información del usuario:", usuario);
+      // console.log("Información del usuario:", usuario);
 
       // Si el campo preferencias es null o no existe, redirigir a /session/Acceso/Preferencias
       if (!usuario.preferencias  || usuario.preferencias.length === 0) {

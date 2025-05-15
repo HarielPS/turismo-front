@@ -19,5 +19,11 @@ module.exports = {
       
     },
   },
+  purge: {
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    options: {
+      safelist: ['text-text'] // Añade aquí tus clases personalizadas
+    }
+  },
   plugins: [],
 };

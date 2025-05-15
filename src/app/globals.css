@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 @layer base {
   html {
@@ -164,6 +165,10 @@
   
     .hover\:text-primary:hover {
       color: var(--color-primary) !important;
+    }
+    
+    .hover\:text-background:hover {
+      color: var(--color-bg) !important;
     }
   
     .hover\:text-secondary:hover {
