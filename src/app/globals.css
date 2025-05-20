@@ -8,26 +8,34 @@
 
   :root {
     --color-primary: #2563EB;
+    --color-primary-strong: #1D4ED8;
     --color-secondary: #06f3a4;
     --color-accent: #f6cd26;
+    --color-accent-hover: #d3b12b;
     --color-bg: #ffffff;
     --color-bg-rgb: 255, 255, 255;
     --color-text: #1f2937;
     --color-text-secondary: #B2B2B2;
     --color-detail: #E5E7EB;
+    --color-detail-hover: #cbcdd1;
     --color-danger: #EF4444;
+    --color-danger-hover: #dc2626;
   }
 
   .dark {
     --color-primary: #3B82F6;
+    --color-primary-strong: #335bca;
     --color-secondary: #06c167;
-    --color-accent: #FBBF24;
+    --color-accent: #f0b100;
+    --color-accent-hover: #c59100;
     --color-bg: #111827;
     --color-bg-rgb: 17, 24, 39;
     --color-text: #F9FAFB;
     --color-text-secondary: #888787;
     --color-detail: #374151;
+    --color-detail-hover: #434e61;
     --color-danger: #F87171;
+    --color-danger-hover: #dc2626;
   }
 
   body {
@@ -50,6 +58,10 @@
       background-color: var(--color-accent) !important;
     }
 
+    .bg-accent-hover {
+      background-color: var(--color-accent-hover) !important;
+    }
+
     .bg-text {
       background-color: var(--color-text) !important;
     }
@@ -60,6 +72,10 @@
 
     .bg-detail {
       background-color: var(--color-detail) !important;
+    }
+
+    .bg-detail-hover {
+      background-color: var(--color-detail-hover) !important;
     }
   
     .bg-background {
@@ -76,6 +92,10 @@
 
     .bg-danger {
       background-color: var(--color-danger) !important;
+    }
+
+    .bg-danger-hover {
+      background-color: var(--color-danger-hover) !important;
     }
     
 
@@ -104,6 +124,10 @@
     .text-primary {
       color: var(--color-primary) !important;
     }
+
+    .text-primary-strong {
+      color: var(--color-primary-strong) !important;
+    }
   
     .text-secondary {
       color: var(--color-secondary) !important;
@@ -123,6 +147,14 @@
   
     .text-text-secondary {
       color: var(--color-text-secondary) !important;
+    }
+
+    .text-danger {
+      color: var(--color-danger) !important;
+    }
+
+    .text-danger-hover {
+      color: var(--color-danger-hover) !important;
     }
   
     /* Borders */
@@ -145,10 +177,17 @@
     .border-detail {
       border-color: var(--color-detail) !important;
     }
+
+    .border-text-secondary {
+      border-color: var(--color-text-secondary) !important;
+    }
   
     /* Hover states */
     .hover\:bg-primary:hover {
       background-color: var(--color-primary) !important;
+    }
+    .hover\:bg-primary-strong:hover {
+      background-color: var(--color-primary-strong) !important;
     }
   
     .hover\:bg-secondary:hover {
@@ -162,9 +201,21 @@
     .hover\:bg-accent:hover {
       background-color: var(--color-accent) !important;
     }
+
+    .hover\:bg-accent-hover:hover {
+      background-color: var(--color-accent-hover) !important;
+    }
   
     .hover\:text-primary:hover {
       color: var(--color-primary) !important;
+    }
+
+    .hover\:bg-detail:hover {
+      background-color: var(--color-detail) !important;
+    }
+
+    .hover\:bg-detail-hover:hover {
+      background-color: var(--color-detail-hover) !important;
     }
     
     .hover\:text-background:hover {
@@ -177,6 +228,10 @@
   
     .hover\:text-accent:hover {
       color: var(--color-accent) !important;
+    }
+
+    .hover\:text-accent-hover:hover {
+      color: var(--color-accent-hover) !important;
     }
 
     .hover\:text-text:hover {
@@ -196,15 +251,23 @@
       background-color: var(--color-danger) !important;
     }
 
+    .hover\:bg-danger-hover:hover {
+      background-color: var(--color-danger-hover) !important;
+    }
+
     /* estilo personalizado mas pequeo */
 
     @media (max-width: 424px) {
+      .xs\:w-full { width: 100% !important; }
+      .xs\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
       .xs\:mt-8 { margin-top: 2rem !important; }
       .xs\:ml-0 { margin-left: 0 !important; }
       .xs\:flex-col {flex-direction: column !important;}
       .xs\:w-full { width: 100% !important; }
       .xs\:hidden { display: none !important; }
-      .xs\:hidden { display: none !important; }
+      .xs\:block { display: block !important; }
+      .xs\:flex { display: flex !important; }
+      .xs\:absolute { display: absolute !important; }
       .xs\:text-2xl { 
         font-size: 1.5rem !important; /* 24px */
         line-height: 2rem !important; /* 32px */
@@ -222,6 +285,11 @@
         line-height: 2.25rem !important;  /* 36px */
       }
 
+    }
+
+    .leaflet-popup-content-wrapper {
+      background-color: var(--color-detail) !important;
+      color: var(--color-text) !important;
     }
   }
 }

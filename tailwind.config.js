@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
+    './node_modules/@preline/carousel/*.js'
   ],
   darkMode: "class",
   theme: {
