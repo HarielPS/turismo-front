@@ -1,0 +1,36 @@
+.boton {
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 5px;
+  border-radius: 20px;
+  background-color: #e5e7eb; /* gris claro */
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton.clicked {
+  background-color: #2563eb; /* azul */
+  color: #fff;
+}
+
+.titulo {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937; /* gris oscuro */
+  margin-bottom: 20px;
+  margin-left: 16px;
+}
+
+.boton:hover {
+  background-color: #d1d5db; /* gris más oscuro al pasar el mouse */
+}
+
+/* Puedes agregar una clase extra si deseas resaltar el botón activo */
+.boton.activo {
+  background-color: #2563eb; /* azul */
+  color: white;
+}
+
+
