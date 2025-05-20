@@ -27,30 +27,32 @@ Usuario:
     * Ultimo_login
     - Foto
     - descripcion
+    //mis pagos
     -pagos (objeto)
        - id 
-       - monto
+       -monto
        -actividad (id)
-       -ruta (id)
-       -tarjeta (id) -null
+       -ruta(id)
+       -tarjeta(id/null)
        -fecha
-            
+      //tipos de pago  
     -tarjetas
         -id
         -tipo (ref a tipo pag o)
-            -numero tarjeta ()
-            -nombre en la tarjeta
-            -direccion en la tarjeta
-            -cp en la tarjeta
-            -fecha vencimiento en la tarjeta (mm/aa)
-            (pedir cvv en front)
-
-    - cancelaciones
+        -numero tarjeta ()
+        -nombre en la tarjeta
+        -direccion en la tarjeta
+        -cp en la tarjeta
+        -fecha vencimiento en la tarjeta (mm/aa)
+        (pedir cvv en front)
+        OJO: VALIDAR RESTRICCIONES 
+    //cancelaciones pagos
+    -cancelaciones
         -id
-        -ruta
-        -actividad
-        -fecha
-        -id (reserva)
+        -ruta(id)
+        -actividad(id)
+        -fecha cancelacion
+        -idReserva
 
     -Itinerario(ruta)
         -Id
@@ -60,18 +62,15 @@ Usuario:
             -Id
                 -Actividad (referencia a actividad,alimento o hotel)
                 -reserva_id(Referencia)(si tiene)
+    //mis reservas
     -Reservas
         -Id
         -id_actividad (referencia a actividad,alimento o hotel)
         -Necesita_pago (true o false)
         -pago_echo (true o false) (depende de Necesita_pago)
         -pago(referencia al pago atributo de usuario) (depende de pago_echo)
-        -estatus (0 1 2)
-
-tabla de reserva:
--id (0:progreso ,1:ya la completaste,2:cancelada)
--string
-    
+        -estatus(0 en progreso,1 vencida,2 cacelada)
+        -fecha
 
 
     
@@ -177,7 +176,7 @@ Tipo_Alimento
 
 tipo_pago: (este diccionario se puede ahorrar discutir)
     - id (1,2,3,4)
-    - nombre (efectivo, tarjeta_debito, tarjeta_credito)
+    - nombre (transferencia, tarjeta_debito, tarjeta_credito)
 
 Localidad (done)
     -id
@@ -186,5 +185,4 @@ Localidad (done)
 
 Tipo_hotel
     - id
-    - nombre (casa de campo, Hotel,Hotel-Boutiq
-ue, ...)
+    - nombre (casa de campo, Hotel,Hotel-Boutique, ...)
