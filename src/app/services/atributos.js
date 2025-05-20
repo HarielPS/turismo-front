@@ -1,6 +1,6 @@
 export async function obtenerAtributos() {
     try {
-      const res = await fetch('http://localhost:3000/atributos');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_RUTA_BACK}/atributos`);
       if (!res.ok) {
         const errorMessage = await res.text();
         throw new Error(`Error al obtener atributos: ${errorMessage}`);

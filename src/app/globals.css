@@ -8,6 +8,7 @@
 
   :root {
     --color-primary: #2563EB;
+    --color-primary-strong: #1D4ED8;
     --color-secondary: #06f3a4;
     --color-accent: #f6cd26;
     --color-bg: #ffffff;
@@ -20,6 +21,7 @@
 
   .dark {
     --color-primary: #3B82F6;
+    --color-primary-strong: #335bca;
     --color-secondary: #06c167;
     --color-accent: #FBBF24;
     --color-bg: #111827;
@@ -104,6 +106,10 @@
     .text-primary {
       color: var(--color-primary) !important;
     }
+
+    .text-primary-strong {
+      color: var(--color-primary-strong) !important;
+    }
   
     .text-secondary {
       color: var(--color-secondary) !important;
@@ -123,6 +129,10 @@
   
     .text-text-secondary {
       color: var(--color-text-secondary) !important;
+    }
+
+    .text-danger {
+      color: var(--color-danger) !important;
     }
   
     /* Borders */
@@ -149,6 +159,9 @@
     /* Hover states */
     .hover\:bg-primary:hover {
       background-color: var(--color-primary) !important;
+    }
+    .hover\:bg-primary-strong:hover {
+      background-color: var(--color-primary-strong) !important;
     }
   
     .hover\:bg-secondary:hover {
@@ -199,12 +212,16 @@
     /* estilo personalizado mas pequeo */
 
     @media (max-width: 424px) {
+      .xs\:w-full { width: 100% !important; }
+      .xs\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
       .xs\:mt-8 { margin-top: 2rem !important; }
       .xs\:ml-0 { margin-left: 0 !important; }
       .xs\:flex-col {flex-direction: column !important;}
       .xs\:w-full { width: 100% !important; }
       .xs\:hidden { display: none !important; }
-      .xs\:hidden { display: none !important; }
+      .xs\:block { display: block !important; }
+      .xs\:flex { display: flex !important; }
+      .xs\:absolute { display: absolute !important; }
       .xs\:text-2xl { 
         font-size: 1.5rem !important; /* 24px */
         line-height: 2rem !important; /* 32px */
@@ -222,6 +239,11 @@
         line-height: 2.25rem !important;  /* 36px */
       }
 
+    }
+
+    .leaflet-popup-content-wrapper {
+      background-color: var(--color-detail) !important;
+      color: var(--color-text) !important;
     }
   }
 }

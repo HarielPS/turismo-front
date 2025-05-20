@@ -63,7 +63,7 @@ export default function Sidebar() {
                   }}
                   className={`flex items-center justify-center cursor-pointer w-full p-3 rounded-lg transition-colors hover:bg-text ${
                     activeItem === item.name 
-                      ? "bg-primary" 
+                      ? "bg-primary text-white" 
                       : "hover:bg-gray-200 dark:hover:bg-gray-700"
                   } ${!open ? "justify-center" : "justify-start"}`}
                 >

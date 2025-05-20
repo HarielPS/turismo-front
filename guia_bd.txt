@@ -28,14 +28,30 @@ Usuario:
     - Foto
     - descripcion
     -pagos (objeto)
-       - id
-            -tipo (ref a tipo pag o)
+       - id 
+       - monto
+       -actividad (id)
+       -ruta (id)
+       -tarjeta (id) -null
+       -fecha
+            
+    -tarjetas
+        -id
+        -tipo (ref a tipo pag o)
             -numero tarjeta ()
             -nombre en la tarjeta
             -direccion en la tarjeta
             -cp en la tarjeta
             -fecha vencimiento en la tarjeta (mm/aa)
             (pedir cvv en front)
+
+    - cancelaciones
+        -id
+        -ruta
+        -actividad
+        -fecha
+        -id (reserva)
+
     -Itinerario(ruta)
         -Id
             - nombre
@@ -50,6 +66,13 @@ Usuario:
         -Necesita_pago (true o false)
         -pago_echo (true o false) (depende de Necesita_pago)
         -pago(referencia al pago atributo de usuario) (depende de pago_echo)
+        -estatus (0 1 2)
+
+tabla de reserva:
+-id (0:progreso ,1:ya la completaste,2:cancelada)
+-string
+    
+
 
     
 
