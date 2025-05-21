@@ -34,7 +34,7 @@ Usuario:
        -actividad (id)
        -ruta(id)
        -tarjeta(id/null)
-       -fecha
+       -fecha de pago
       //tipos de pago  
     -tarjetas
         -id
@@ -81,6 +81,15 @@ Usuario:
         -status (reserva (manda a mis reservas) y eliminar)
 
 
+
+    -Guardado
+        -id
+        -status(reserva (manda mis reservas), eliminar)
+        -fecha Guardado
+        -actividades(objeto)
+            -id
+            -tipo(servicio,hotel,alimento)
+        
 
 
     

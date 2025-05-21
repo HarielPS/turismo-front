@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Cancelacion from '@/components/pagos/cancelacion'; 
 import Reservas from '@/components/pagos/reservas'; 
+import Pagar from '@/components/pagos/pagar';
+import Tarjetas from '@/components/pagos/tarjetas';
 
 const botones = [
   "Mis reservas",
@@ -10,7 +12,7 @@ const botones = [
   "Tarjetas registradas"
 ];
 
-// Define the Reserva interface if not imported
+// Define the Reserva interface
 interface Reserva {
   id: number;
   id_actividad: string;
@@ -19,13 +21,17 @@ interface Reserva {
   status: number;
   fecha_reserva: string;
   fecha_cancelacion?: string | null;
-  pago: { id: string; monto: number; metodo: string } | null;
+  pago: { 
+    id: string; 
+    monto: number; 
+    metodo: string; 
+  } | null;
 }
 
 const Pagos = () => {
   const [activo, setActivo] = useState(0);
 
-  // Asegúrate de que la interfaz Reserva esté importada o definida en este archivo
+  // Datos mock de reservas agrupadas por ruta
   const [reservasPorRuta, setReservasPorRuta] = useState<Record<string, Reserva[]>>({
     ruta1: [
       {
@@ -112,39 +118,39 @@ const Pagos = () => {
       case 0:
         return <Reservas reservasPorRuta={reservasPorRuta} setReservasPorRuta={setReservasPorRuta} />;
       case 1:
-        return <div>Contenido de Mis pagos</div>;
+        return <Pagar reservasPorRuta={reservasPorRuta} />;
       case 2:
         return <Cancelacion reservasPorRuta={reservasPorRuta} />;
       case 3:
-        return <div>Contenido de Tarjetas registradas</div>;
+        return <Tarjetas/>;
       default:
         return null;
     }
   };
 
- return (
-  <div title='cabecera'>
-    <h1 className='text-5xl font-bold text-text mb-10 ml-4'>Mis reservas y pagos</h1>
-    <div className="menu">
-      {botones.map((texto, i) => (
-        <div
-          key={i}
-          className={`inline-block px-4 py-2.5 m-1 rounded-full cursor-pointer transition-colors duration-300 ${
-            activo === i 
-              ? "bg-primary text-white" 
-              : "bg-detail text-text hover:bg-text-secondary"
-          } font-medium`}
-          onClick={() => setActivo(i)}
-        >
-          {texto}
-        </div>
-      ))}
+  return (
+    <div className="pagos-container">
+      <h1 className='text-5xl font-bold text-text mb-10 ml-4'>Mis reservas y pagos</h1>
+      <div className="menu">
+        {botones.map((texto, i) => (
+          <div
+            key={i}
+            className={`inline-block px-4 py-2.5 m-1 rounded-full cursor-pointer transition-colors duration-300 ${
+              activo === i 
+                ? "bg-primary text-white" 
+                : "bg-detail text-text hover:bg-text-secondary"
+            } font-medium`}
+            onClick={() => setActivo(i)}
+          >
+            {texto}
+          </div>
+        ))}
+      </div>
+      <div className="contenido mt-6">
+        {renderContenido()}
+      </div>
     </div>
-    <div className="contenido">
-      {renderContenido()}
-    </div>
-  </div>
-);
+  );
 };
 
 export default Pagos;

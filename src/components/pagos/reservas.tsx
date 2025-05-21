@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-// import './tabla.css';
 
 interface Reserva {
   id: number;
