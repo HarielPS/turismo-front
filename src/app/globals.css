@@ -255,6 +255,10 @@
       background-color: var(--color-danger-hover) !important;
     }
 
+    .hover\:text-white:hover {
+      color: #ffffff !important;
+    }
+
     /* estilo personalizado mas pequeo */
 
     @media (max-width: 424px) {

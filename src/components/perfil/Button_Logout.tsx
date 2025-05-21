@@ -32,8 +32,8 @@ export default function LogoutButton({
   const variantClasses = {
     primary: 'bg-primary hover:bg-primary text-background',
     secondary: 'bg-secondary hover:bg-secondary text-background',
-    danger: 'bg-red-600 hover:bg-red-700 text-background',
-    ghost: 'bg-detail hover:bg-danger text-text',
+    danger: 'bg-danger hover:bg-red-700 text-background',
+    ghost: 'bg-detail hover:bg-danger text-text hover:text-white',
   };
   
 

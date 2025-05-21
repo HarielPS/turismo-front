@@ -44,6 +44,7 @@ const Navbar: React.FC = () => {
                   <li><a href="#Datos">Datos</a></li>
                   <li><a href="#Infopage">Descubre Más</a></li>
                   <li><a href="#Pueblos">Pueblos</a></li>
+                  <li><a href="/Mapa">Mapa</a></li>
                 </ul>
               </nav>
 

@@ -1,53 +1,86 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { GlobeAmericasIcon } from '@heroicons/react/20/solid';
+import { useRouter } from 'next/navigation';
 
 // Datos de ejemplo
-const pueblosMagicos = [
-    { id: 1, nombre: "Taxco, Guerrero" },
-    { id: 2, nombre: "San Miguel de Allende, Guanajuato" },
-    { id: 3, nombre: "Tepoztlán, Morelos" },
-    { id: 4, nombre: "Pátzcuaro, Michoacán" },
-    { id: 5, nombre: "Real de Catorce, San Luis Potosí" },
-  ];
+// const pueblosMagicos = [
+//     { id: 1, nombre: "Taxco, Guerrero" },
+//     { id: 2, nombre: "San Miguel de Allende, Guanajuato" },
+//     { id: 3, nombre: "Tepoztlán, Morelos" },
+//     { id: 4, nombre: "Pátzcuaro, Michoacán" },
+//     { id: 5, nombre: "Real de Catorce, San Luis Potosí" },
+//   ];
 
-  interface Pueblo {
-    id: number;
-    nombre: string;
-  }
+interface Pueblo {
+  _id: string; // Cambiado a string para coincidir con MongoDB
+  nombre: string;
+  coordenadas: {
+    lat: number;
+    long: number;
+  };
+}
 
 const Principal = () => {
-    const [searchTerm, setSearchTerm] = useState<string>('');
-    const [filteredPueblos, setFilteredPueblos] = useState<Pueblo[]>([]);
-    const [selectedPueblo, setSelectedPueblo] = useState<Pueblo | null>(null);
-    const [showSuggestions, setShowSuggestions] = useState<boolean>(false);    
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [pueblos, setPueblos] = useState<Pueblo[] | null>(null); // Cambiado a null inicial
+  const [filteredPueblos, setFilteredPueblos] = useState<Pueblo[]>([]);
+  const [selectedPueblo, setSelectedPueblo] = useState<Pueblo | null>(null);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        if (searchTerm.length > 0) {
-          const filtered = pueblosMagicos.filter(pueblo =>
-            pueblo.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-          );
-          setFilteredPueblos(filtered);
-          setShowSuggestions(true);
-      
-          // Verifica coincidencia exacta (ignorando mayúsculas)
-          const match = pueblosMagicos.find(
-            (pueblo) => pueblo.nombre.toLowerCase() === searchTerm.toLowerCase()
-          );
-          if (match) {
-            setShowSuggestions(false);
-          }
-        } else {
-          setFilteredPueblos([]);
-          setShowSuggestions(false);
-        }
-      }, [searchTerm]);
-
-    const handleSelectPueblo = (pueblo: Pueblo): void => {
-        setSelectedPueblo(pueblo);
-        setSearchTerm(pueblo.nombre);
-        setShowSuggestions(false);
+  // Cargar pueblos al montar el componente
+  useEffect(() => {
+    const fetchPueblos = async () => {
+      try {
+        const res = await fetch('/api/pueblos');
+        const data = await res.json();
+        console.log('Respuesta API:', data);
+        setPueblos(Array.isArray(data) ? data : []);        setIsLoading(false);
+      } catch (error) {
+        console.error('Error cargando pueblos:', error);
+        setPueblos([]); // En caso de error, establecer array vacío
+        setIsLoading(false);
+      }
     };
+    
+    fetchPueblos();
+  }, []);
+
+  // Filtrar pueblos según término de búsqueda
+  useEffect(() => {
+    if (!pueblos) return; // No hacer nada si pueblos es null
+    
+    if (searchTerm.length > 0) {
+      const filtered = pueblos.filter(pueblo =>
+        pueblo.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredPueblos(filtered);
+      setShowSuggestions(true);
+    } else {
+      setFilteredPueblos([]);
+      setShowSuggestions(false);
+    }
+  }, [searchTerm, pueblos]);
+
+  const handleSelectPueblo = (pueblo: Pueblo): void => {
+    setSelectedPueblo(pueblo);
+    setSearchTerm(pueblo.nombre);
+    setShowSuggestions(false);
+  };
+
+  const handleSearch = () => {
+    if (selectedPueblo) {
+      const { lat, long } = selectedPueblo.coordenadas;
+      router.push(`/Mapa?lat=${lat}&lng=${long}`);
+    }
+  };
+
+  useEffect(() => {
+  console.log('pueblos:', pueblos);
+  console.log('filtered:', filteredPueblos);
+}, [pueblos, filteredPueblos]);
 
   return (
     <div id='Inicio' className="relative h-screen w-full overflow-hidden">
@@ -80,7 +113,7 @@ const Principal = () => {
         {/* Motor de búsqueda */}
         <div className='flex flex-row xs:flex-col items-center w-full max-w-2xl relative'>
         <div className="flex items-center w-full max-w-2xl relative">
-                <div className="flex items-center w-full rounded-t-xl bg-amber-400">
+                <div className="flex items-center w-full rounded-t-xl">
                   <div className="flex items-center bg-white w-full p-4 rounded-lg ">
                       {/* icono del search */}
                       <div className="xs:hidden mr-4 text-black border-r border-gray-500 pr-4">
@@ -91,7 +124,12 @@ const Principal = () => {
                           type="text"
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
-                          onFocus={() => searchTerm.length > 0 && setShowSuggestions(true)}
+                          onFocus={() => {
+                            if (filteredPueblos.length > 0) setShowSuggestions(true);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleSearch();
+                          }}
                           placeholder="Busca un Pueblo Mágico..."
                           className="text-black w-full focus:outline-none"
                       />
@@ -104,7 +142,7 @@ const Principal = () => {
                   <div className="absolute top-[90%] border-t border-gray-300 left-0 w-full max-w-2xl mt-1 rounded-b-xl overflow-auto bg-white text-black shadow-lg border z-2">
                   {filteredPueblos.map((pueblo: Pueblo) => (
                       <div
-                      key={pueblo.id}
+                      key={pueblo._id}
                       onClick={() => handleSelectPueblo(pueblo)}
                       className="cursor-pointer px-4 py-2 hover:bg-gray-200 transition-colors"
                       >
@@ -116,7 +154,7 @@ const Principal = () => {
           </div>
 
           
-          <button className="mt-0 xs:mt-8 xs:w-full bg-blue-500 text-white font-bold px-4 py-4 rounded-xl ml-2 xs:ml-0 hover:bg-blue-600 transition-colors cursor-pointer">
+          <button onClick={handleSearch} className="mt-0 xs:mt-8 xs:w-full bg-blue-500 text-white font-bold px-4 py-4 rounded-xl ml-2 xs:ml-0 hover:bg-blue-600 transition-colors cursor-pointer">
               Buscar
           </button>
         </div>

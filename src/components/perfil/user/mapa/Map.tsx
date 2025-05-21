@@ -43,9 +43,15 @@ const Map = ({ locations = [], center = [0, 0], zoom, onLocationSelect }: MapPro
 
   // Inicializa el mapa una sola vez
   useEffect(() => {
-    if (!mapRef.current) {
-      const map = L.map('map').setView(center, zoom);
+    if (!mapRef.current) 
+    {
+      const map = L.map('map', {
+        zoomControl: true
+      }).setView(center, zoom);
       mapRef.current = map;
+
+      // Set zoom control position after map creation
+      map.zoomControl.setPosition('bottomright');
 
       const tileLayer = L.tileLayer(getTileUrl(theme), {
         attribution: '&copy; OpenStreetMap contributors',
@@ -53,6 +59,7 @@ const Map = ({ locations = [], center = [0, 0], zoom, onLocationSelect }: MapPro
 
       tileLayer.addTo(map);
       tileLayerRef.current = tileLayer;
+
     }
   }, []);
 
@@ -69,28 +76,6 @@ const Map = ({ locations = [], center = [0, 0], zoom, onLocationSelect }: MapPro
       mapRef.current.setView(center, zoom);
     }
   }, [center, zoom]);
-
-  // Actualiza los marcadores dinámicamente
-  // useEffect(() => {
-  //   if (!mapRef.current) return;
-
-  //   // Limpia los marcadores anteriores
-  //   markersRef.current.forEach(marker => marker.remove());
-  //   markersRef.current = [];
-
-  //   // Agrega nuevos marcadores
-  //   locations.forEach(loc => {
-  //     const marker = L.marker([loc.lat, loc.lng], { icon: getIconByType(loc.type) })
-  //       .addTo(mapRef.current!)
-  //       .bindPopup(loc.popupText || '')
-  //       .on('click', () => onLocationSelect({ lat: loc.lat, lng: loc.lng, popupText: loc.popupText || '' }));
-
-  //     marker.on('mouseover', () => marker.openPopup());
-  //     marker.on('mouseout', () => marker.closePopup());
-
-  //     markersRef.current.push(marker);
-  //   });
-  // }, [locations, onLocationSelect]);
 
    useEffect(() => {
     if (!mapRef.current) return;
@@ -118,11 +103,7 @@ const Map = ({ locations = [], center = [0, 0], zoom, onLocationSelect }: MapPro
       const marker = L.marker([loc.lat, loc.lng], { icon: getIconByType(loc.type) })
         .addTo(mapRef.current!)
         .bindPopup(popupContent)
-        .on('click', () => onLocationSelect({ 
-          lat: loc.lat, 
-          lng: loc.lng, 
-          popupText: loc.name || '' 
-        }));
+        .on('click', () => onLocationSelect(loc._id));
 
       marker.on('mouseover', () => marker.openPopup());
       marker.on('mouseout', () => marker.closePopup());

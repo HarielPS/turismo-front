@@ -133,7 +133,7 @@ export default function Sidebar() {
               <div className={`group ${!open ? "flex justify-center" : ""}`}>
                 <LogoutButton
                   variant="ghost"
-                  className={`w-full ${!open ? "justify-center" : "justify-start"}`}
+                  className={`w-full hover:text-white ${!open ? "justify-center" : "justify-start"}`}
                   showText={open}
                 />
                 {/* Tooltip para menú cerrado */}
