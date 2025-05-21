@@ -34,7 +34,7 @@ Usuario:
        -actividad (id)
        -ruta(id)
        -tarjeta(id/null)
-       -fecha
+       -fecha de pago
       //tipos de pago  
     -tarjetas
         -id
@@ -71,6 +71,15 @@ Usuario:
         -pago(referencia al pago atributo de usuario) (depende de pago_echo)
         -estatus(0 en progreso,1 vencida,2 cacelada)
         -fecha
+
+    -Guardado
+        -id
+        -status(reserva (manda mis reservas), eliminar)
+        -fecha Guardado
+        -actividades(objeto)
+            -id
+            -tipo(servicio,hotel,alimento)
+        
 
 
     
