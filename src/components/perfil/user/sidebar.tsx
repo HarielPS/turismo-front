@@ -28,12 +28,12 @@ export default function Sidebar() {
     { name: "Mapa", icon: <MapIcon className="h-5 w-5" />, path:"/Usuario/mapa" },
     { name: "Nueva Ruta", icon: <PlusCircleIcon className="h-5 w-5" />, path:"/Usuario/nuevaRuta" },
     { name: "Rutas Guardadas", icon: <BookmarkIcon className="h-5 w-5" />, path:"/Usuario/rutaGuardada" },
-    { name: "Notificaciones", icon: <BellIcon className="h-5 w-5" />, path:"/Usuario/notificaciones" },
+    // { name: "Notificaciones", icon: <BellIcon className="h-5 w-5" />, path:"/Usuario/notificaciones" },
     { name: "Pagos y Reservas", icon: <CreditCardIcon className="h-5 w-5" />, path:"/Usuario/pagos" },
   ];
 
   const bottomItems = [
-    { name: "Ajustes y ayuda", icon: <CogIcon className="h-5 w-5" />, path:"/Usuario/ajustes" },
+    // { name: "Ajustes y ayuda", icon: <CogIcon className="h-5 w-5" />, path:"/Usuario/ajustes" },
     { name: "Perfil", icon: <UserIcon className="h-5 w-5" />, path:"/Usuario/perfil" },
   ];
 
