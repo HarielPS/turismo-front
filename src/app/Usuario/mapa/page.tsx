@@ -11,7 +11,6 @@ export default function MapaPage() {
 
 
   const center: [number, number] = [19.72236794777676, -99.2084672475309];
-  // 19.72236794777676, -99.2084672475309 -> tepotzotlan
   const zoom = 13;
 
   // Estado para manejar la ubicación seleccionada
@@ -91,7 +90,7 @@ return (
 
     {/* Panel de información (aparece/desaparece) */}
     {selectedEvento && (
-    <div className={`absolute h-full w-full sm:w-1/4 z-2 bg-amber-300 rounded-r-xl shadow-lg transition-all duration-300 transform ${isPanelVisible ? 'translate-x-0' : '-translate-x-full'}`}>
+    <div className={`absolute h-full w-full sm:w-1/4 z-2 rounded-r-xl shadow-lg transition-all duration-300 transform ${isPanelVisible ? 'translate-x-0' : '-translate-x-full'}`}>
       <Infoevent servicio={selectedEvento} onClose={handlePanelToggle} />     
     </div>
     )}
