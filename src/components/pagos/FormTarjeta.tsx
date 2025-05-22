@@ -12,7 +12,6 @@ interface TarjetaFormData {
   predeterminada: boolean;
 }
 
-// Props del componente
 interface FormularioTarjetaProps {
   onSubmit: (datos: TarjetaFormData) => void;
   onCancel: () => void;
@@ -31,7 +30,6 @@ const FormularioTarjeta: React.FC<FormularioTarjetaProps> = ({ onSubmit, onCance
   });
   const [errores, setErrores] = useState<Record<string, string>>({});
 
-  // Función para detectar el tipo de tarjeta basado en el número
   const detectarTipoTarjeta = (numero: string): 'visa' | 'mastercard' | 'amex' | 'otro' => {
     const limpio = numero.replace(/\s+/g, '');
     if (/^4[0-9]{12}(?:[0-9]{3})?$/.test(limpio)) return 'visa';
@@ -40,12 +38,10 @@ const FormularioTarjeta: React.FC<FormularioTarjetaProps> = ({ onSubmit, onCance
     return 'otro';
   };
 
-  // Función para formatear el número de tarjeta según se escribe
   const formatearNumeroTarjeta = (numero: string): string => {
     const limpio = numero.replace(/\s+/g, '');
     const grupos = [];
     
-    // AMEX tiene formato 4-6-5, otros tienen 4-4-4-4
     if (detectarTipoTarjeta(limpio) === 'amex') {
       for (let i = 0; i < limpio.length; i += 
       i === 0 ? 4 : i === 4 ? 6 : 5) {
@@ -61,11 +57,9 @@ const FormularioTarjeta: React.FC<FormularioTarjetaProps> = ({ onSubmit, onCance
     return grupos.join(' ');
   };
 
-  // Manejador para el cambio en los inputs del formulario
   const manejarCambioInput = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     
-    // Manejar caso especial para checkbox
     if (type === 'checkbox') {
       setNuevaTarjeta(prev => ({
         ...prev,
@@ -76,19 +70,14 @@ const FormularioTarjeta: React.FC<FormularioTarjetaProps> = ({ onSubmit, onCance
     
     let valorProcesado = value;
 
-    // Formatear según el campo
     if (name === 'numeroTarjeta') {
-      // Permitir sólo números
       valorProcesado = value.replace(/[^\d]/g, '');
-      // Limitar longitud según tipo de tarjeta (amex:15, otros:16)
       const tipo = detectarTipoTarjeta(valorProcesado);
       const maxLength = tipo === 'amex' ? 15 : 16;
       valorProcesado = valorProcesado.slice(0, maxLength);
-      // Formatear con espacios
       valorProcesado = formatearNumeroTarjeta(valorProcesado);
     } 
     else if (name === 'fechaVencimiento') {
-      // Formato MM/YY
       valorProcesado = value.replace(/[^\d]/g, '');
       if (valorProcesado.length > 0) {
         valorProcesado = valorProcesado.slice(0, 4);
@@ -98,13 +87,11 @@ const FormularioTarjeta: React.FC<FormularioTarjetaProps> = ({ onSubmit, onCance
       }
     }
     else if (name === 'cvv') {
-      // Solo permitir números y limitar longitud según tipo de tarjeta
       valorProcesado = value.replace(/[^\d]/g, '');
       const maxLength = nuevaTarjeta.tipo === 'amex' ? 4 : 3;
       valorProcesado = valorProcesado.slice(0, maxLength);
     }
     else if (name === 'codigoPostal') {
-      // Limitar a 5 dígitos para código postal
       valorProcesado = value.replace(/[^\d]/g, '');
       valorProcesado = valorProcesado.slice(0, 5);
     }
@@ -112,7 +99,6 @@ const FormularioTarjeta: React.FC<FormularioTarjetaProps> = ({ onSubmit, onCance
     setNuevaTarjeta(prev => ({
       ...prev,
       [name]: valorProcesado,
-      // Actualizar tipo de tarjeta automáticamente si cambia el número
       ...(name === 'numeroTarjeta' ? { tipo: detectarTipoTarjeta(valorProcesado) } : {})
     }));
     
