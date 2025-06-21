@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-interface UserInfo {
-    userId?: string;
-    role?: string;
-    userData?: any;
-    atributos?: any[];
-}
+// interface UserInfo {
+//     userId?: string;
+//     role?: string;
+//     userData?: any;
+//     atributos?: any[];
+// }
 
 export function calcularEdad(fechaNacimiento:any) {
   const nacimiento = new Date(fechaNacimiento);

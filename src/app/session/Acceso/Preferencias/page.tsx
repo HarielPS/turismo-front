@@ -95,7 +95,7 @@ const Preferencias = () => {
     let nuevosVisibles = [...atributosVisibleswhileSearch];
 
     // Para cada elemento en la jerarquía 
-    jerarquiaCompleta.forEach((nivel, index) => {
+    jerarquiaCompleta.forEach((nivel) => {
       nuevosVisibles = getVisibleChildren(nivel._id, todosLosAtributos, nuevosVisibles, preferencias);
     });
 

@@ -14,6 +14,7 @@ export async function verifyToken() {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
     return { decoded };
   } catch (err) {
+    console.error('Auth error:', err);
     return { error: 'Invalid token', status: 403 };
   }
 }

@@ -9,10 +9,10 @@ import {bajarUsuarioInfo} from '@/services/bajarUsuarioInfo'
 import { subirInformacionInfo } from '@/services/subirInformacionInfo'
 
 
-interface Preferencia {
-  atributoID: string;
-  conteo?: number;
-}
+// interface Preferencia {
+//   atributoID: string;
+//   conteo?: number;
+// }
 
 const Perfil = () => {
   const [userInfo, setUserInfo] = useState<{
@@ -81,6 +81,7 @@ const Perfil = () => {
       const data = await bajarUsuarioInfo();
       setUserInfo(data);
     } catch (err) {
+      console.error('Error al guardar información:', err);
       alert("Error al guardar información");
     }
   };

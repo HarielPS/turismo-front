@@ -1,5 +1,5 @@
 // utils/bajarUsuarioInfo.ts
-import { UsuarioInfoResult } from '@/interfaces/UsuarioInfoResult';
+// import { UsuarioInfoResult } from '@/interfaces/UsuarioInfoResult';
 
 export const bajarUsuarioInfo = async () => {
   try {

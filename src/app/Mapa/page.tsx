@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Map from '@/components/perfil/user/mapa/Map';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { Servicio } from '@/components/perfil/user/interfaces/mapa';
 import { getEstadoYHoraCierre } from '@/components/perfil/user/mapa/FuncionHora';
 import Infoevent from '@/components/perfil/user/mapa/Infoevent';
@@ -20,7 +19,7 @@ const center: [number, number] = latParam && lngParam
   const zoom = 13;
 
   // Estado para manejar la ubicación seleccionada
-  const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lng: number; popupText: string } | null>(null);
+  // const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lng: number; popupText: string } | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isPanelVisible, setIsPanelVisible] = useState<boolean>(false);
   const [locations, setLocations] = useState<Servicio[]>([]);

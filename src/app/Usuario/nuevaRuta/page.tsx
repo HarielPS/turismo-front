@@ -2,7 +2,7 @@
 import React, { useEffect,useState } from 'react'
 import Map from '@/components/perfil/user/mapa/Map'
 import RutasBox from '@/components/perfil/user/mapa/rutas';
-import { MapProps } from '@/components/perfil/user/interfaces/mapa';
+// import { MapProps } from '@/components/perfil/user/interfaces/mapa';
 import { Servicio } from '@/components/perfil/user/interfaces/mapa';
 import { getEstadoYHoraCierre } from '@/components/perfil/user/mapa/FuncionHora';
 
@@ -11,11 +11,11 @@ const NuevaRuta = () => {
   const zoom = 13;
 
   // Estado para manejar la ubicación seleccionada
-    const [searchTerm, setSearchTerm] = useState<string>("");
+    // const [searchTerm, setSearchTerm] = useState<string>("");
     const [locations, setLocations] = useState<Servicio[]>([]);
     const [eventosData, setEventosData] = useState<any[]>([]); 
-    const [selectedEventoId, setSelectedEventoId] = useState<string | null>(null);
-    const selectedEvento = eventosData.find(e => e._id === selectedEventoId);
+    // const [selectedEventoId, setSelectedEventoId] = useState<string | null>(null);
+    // const selectedEvento = eventosData.find(e => e._id === selectedEventoId);
   
     useEffect(() => {
       async function fetchAllData() {

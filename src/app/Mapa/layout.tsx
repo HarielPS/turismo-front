@@ -1,6 +1,5 @@
 "use client";
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import ThemeLogo from '@/components/logo/ThemeLogo';
 
 export default function UsuarioLayout({ children }: { children: React.ReactNode }) {
   return (

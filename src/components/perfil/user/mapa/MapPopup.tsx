@@ -8,8 +8,8 @@ const MapPopup: React.FC<MapPopupProps> = ({
   reviewCount,
   type,
   feature_1,
-  feature_2,
-  feature_3,
+  // feature_2,
+  // feature_3,
   status,
   closingTime,
   img

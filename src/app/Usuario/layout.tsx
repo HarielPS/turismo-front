@@ -1,6 +1,6 @@
 "use client";
 
-import LogoutButton from '@/components/perfil/Button_Logout';
+// import LogoutButton from '@/components/perfil/Button_Logout';
 import Sidebar from '@/components/perfil/user/sidebar';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 

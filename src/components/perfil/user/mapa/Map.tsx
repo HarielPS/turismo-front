@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import type { Servicio, MapProps } from '@/components/perfil/user/interfaces/mapa';
+import type {MapProps } from '@/components/perfil/user/interfaces/mapa';
 import ReactDOMServer from 'react-dom/server';
 import MapPopup from './MapPopup';
 

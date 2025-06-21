@@ -5,7 +5,8 @@ import { cookies } from 'next/headers';
 type AuthResult = {
   isAuthenticated: boolean;
   hasPreferences?: boolean;
-  user?: any;
+  // user?: any;
+  user?: Record<string, unknown>;
   role?: string;
 };
 
@@ -51,6 +52,7 @@ export async function clientCheckAuth(): Promise<AuthResult> {
 
     return await response.json();
   } catch (error) {
+    console.error('Error checking auth:', error);
     return { isAuthenticated: false };
   }
 }

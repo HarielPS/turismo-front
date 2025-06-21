@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import { calcularEdad } from './datosFunctions'
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 interface DatosInfoProps {
   img?: string;
@@ -66,9 +66,9 @@ const DatosInfo: React.FC<DatosInfoProps> = ({
   };
 
   // Versión más robusta de convertirFechaISO
-  interface ConvertirFechaISOResult {
-    isoDate: string | null;
-  }
+  // interface ConvertirFechaISOResult {
+  //   isoDate: string | null;
+  // }
 
   const convertirFechaISO = (fechaTexto: string | undefined): string | null => {
     if (!fechaTexto || fechaTexto === "No disponible") return null;

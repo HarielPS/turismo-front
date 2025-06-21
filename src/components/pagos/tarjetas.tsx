@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import FormularioTarjeta from './FormTarjeta';
 
 // Componentes simples para reemplazar los iconos
-const IconoCreditCard = () => <span className="mr-2">💳</span>;
+// const IconoCreditCard = () => <span className="mr-2">💳</span>;
 const IconoTrash = () => <span className="mr-2">🗑️</span>;
 const IconoPlusCircle = () => <span className="mr-2">➕</span>;
 const IconoCheck = () => <span className="mr-2">✓</span>;

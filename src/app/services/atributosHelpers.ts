@@ -1,4 +1,4 @@
-import Preferencias from "../session/Acceso/Preferencias/page";
+// import Preferencias from "../session/Acceso/Preferencias/page";
 
 // estructura de Atributo
 export interface Atributo {

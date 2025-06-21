@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { getVerifiedUser } from '../userinfo/route';
 
 export async function POST(request: Request) {
-  const { userId, error, status } = await getVerifiedUser();
+  const { error, status } = await getVerifiedUser();
   
   if (error) {
     return NextResponse.json({ error }, { status });

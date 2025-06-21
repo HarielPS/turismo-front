@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 const FormInicioSession: React.FC = () => {
