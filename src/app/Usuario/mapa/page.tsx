@@ -23,47 +23,141 @@ export default function MapaPage() {
   const selectedEvento = eventosData.find(e => e._id === selectedEventoId);
 
   // Fetch eventos desde tu API interna (Next.js route)
-  useEffect(() => {
-    async function fetchEventos() {
-      try {
-        const res = await fetch('/api/servicios');
-        const data = await res.json();
+  // useEffect(() => {
+  //   async function fetchEventos() {
+  //     try {
+  //       const res = await fetch('/api/servicios');
+  //       const data = await res.json();
 
-        // data.eventos es el arreglo que devuelve tu API
-        const eventos = data.eventos;
+  //       // data.eventos es el arreglo que devuelve tu API
+  //       const eventos = data.eventos;
 
-        const locs: Servicio[] = eventos.map((item: any): Servicio => {
-        const { status, closingTime } = getEstadoYHoraCierre(item.horarios, item.fecha); // función que tú defines
+  //       const locs: Servicio[] = eventos.map((item: any): Servicio => {
+  //       const { status, closingTime } = getEstadoYHoraCierre(item.horarios, item.fecha); // función que tú defines
 
-        return {
-          _id: item._id,
-          lat: item.coordenadas.lat,
-          lng: item.coordenadas.long,
-          name: item.nombre,
-          rating: item.calificacion ?? 0,
-          reviewCount: item.comentarios?.length ?? 0,
-          feature_1: item.categoria?.nombre || '',
-          feature_2: item.tipo?.nombre || '',
-          feature_3: item.subtipo?.nombre || '',
-          status,
-          fecha: item.fecha ? item.fecha.descripcion : '',
-          closingTime,
-          type: 'actividad',
-          img: item.img_profile,
-        };
-      });
+  //       return {
+  //         _id: item._id,
+  //         lat: item.coordenadas.lat,
+  //         lng: item.coordenadas.long,
+  //         name: item.nombre,
+  //         rating: item.calificacion ?? 0,
+  //         reviewCount: item.comentarios?.length ?? 0,
+  //         feature_1: item.categoria?.nombre || '',
+  //         feature_2: item.tipo?.nombre || '',
+  //         feature_3: item.subtipo?.nombre || '',
+  //         status,
+  //         fecha: item.fecha ? item.fecha.descripcion : '',
+  //         closingTime,
+  //         type: 'actividad',
+  //         img: item.img_profile,
+  //       };
+  //     });
 
         
 
-        setLocations(locs);
-        setEventosData(eventos);
+  //       setLocations(locs);
+  //       setEventosData(eventos);
+  //     } catch (error) {
+  //       console.error('Error cargando eventos:', error);
+  //     }
+  //   }
+
+  //   fetchEventos();
+  // }, []);
+
+  useEffect(() => {
+    async function fetchAllData() {
+      try {
+        const [resServicios, resHoteles, resRestaurantes] = await Promise.all([
+          fetch('/api/servicios'),
+          fetch('/api/hotel'),
+          fetch('/api/restaurante')
+        ]);
+
+        const [dataServicios, dataHoteles, dataRestaurantes] = await Promise.all([
+          resServicios.json(),
+          resHoteles.json(),
+          resRestaurantes.json()
+        ]);
+
+        const eventos = dataServicios.eventos || [];
+        const hoteles = dataHoteles.hoteles || [];
+        const restaurantes = dataRestaurantes.restaurantes || [];
+
+        const serviciosMapped: Servicio[] = eventos.map((item: any): Servicio => {
+          const { status, closingTime } = getEstadoYHoraCierre(item.horarios, item.fecha);
+
+          return {
+            _id: item._id,
+            lat: item.coordenadas.lat,
+            lng: item.coordenadas.long,
+            name: item.nombre,
+            rating: item.calificacion ?? 0,
+            reviewCount: item.comentarios?.length ?? 0,
+            feature_1: item.categoria?.nombre || '',
+            feature_2: item.tipo?.nombre || '',
+            feature_3: item.subtipo?.nombre || '',
+            status,
+            fecha: item.fecha ? item.fecha.descripcion : '',
+            closingTime,
+            type: 'actividad',
+            img: item.img_profile,
+          };
+        });
+
+        const hotelesMapped: Servicio[] = hoteles.map((item: any): Servicio => {
+          const { status, closingTime } = getEstadoYHoraCierre(item.horarios, null);
+          return {
+            _id: item._id,
+            lat: item.coordenadas.lat,
+            lng: item.coordenadas.long,
+            name: item.nombre,
+            rating: item.calificacion ?? 0,
+            reviewCount: 0,
+            feature_1: 'Hotel',
+            feature_2: '',
+            feature_3: '',
+            status,
+            fecha: '',
+            closingTime,
+            type: 'hotel',
+            img: item.img_profile,
+          };
+        });
+
+        const restaurantesMapped: Servicio[] = restaurantes.map((item: any): Servicio => {
+          const { status, closingTime } = getEstadoYHoraCierre(item.horarios, null);
+          return {
+            _id: item._id,
+            lat: item.coordenadas.lat,
+            lng: item.coordenadas.long,
+            name: item.nombre,
+            rating: item.calificacion ?? 0,
+            reviewCount: 0,
+            feature_1: 'Restaurante',
+            feature_2: '',
+            feature_3: '',
+            status,
+            fecha: '',
+            closingTime,
+            type: 'restaurante',
+            img: item.img_profile,
+          };
+        });
+
+        const allLocations = [...serviciosMapped, ...hotelesMapped, ...restaurantesMapped];
+
+        setLocations(allLocations);
+        // setEventosData(eventos);
+        setEventosData([...eventos, ...hoteles, ...restaurantes]);
       } catch (error) {
-        console.error('Error cargando eventos:', error);
+        console.error('Error cargando datos del mapa:', error);
       }
     }
 
-    fetchEventos();
+    fetchAllData();
   }, []);
+
 
   useEffect(() => {
     console.log(locations);

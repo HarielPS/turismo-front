@@ -90,3 +90,42 @@ export async function POST() {
 //   method: 'POST',
 // });
 // const { userId, role, userData } = await resFull.json();
+
+// PATCH /api/userinfo
+export async function PATCH(req: Request) {
+  const { userId, error, status } = await getVerifiedUser();
+
+  if (error) {
+    return NextResponse.json({ error }, { status });
+  }
+
+  const backendUrl = process.env.NEXT_PUBLIC_RUTA_BACK;
+  console.log("🔗 BACKEND:", backendUrl);
+
+  if (!backendUrl) {
+    return NextResponse.json({ error: 'No backend URL configured' }, { status: 500 });
+  }
+
+  try {
+    const body = await req.json();
+
+    const res = await fetch(`${backendUrl}/usuarios/${userId}/perfil`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      return NextResponse.json({ error: result.message || 'Error al actualizar perfil' }, { status: res.status });
+    }
+
+    return NextResponse.json(result);
+  } catch (err) {
+    console.error('ERROR PATCH /api/userinfo', err);
+    return NextResponse.json({ error: 'Error actualizando usuario' }, { status: 500 });
+  }
+}

@@ -9,76 +9,6 @@ import { getEstadoYHoraCierre } from '@/components/perfil/user/mapa/FuncionHora'
 const NuevaRuta = () => {
   const center: [number, number] = [19.72236794777676, -99.2084672475309];
   const zoom = 13;
-  // const locations = [
-  //   {
-  //     _id: '1',
-  //     lat: 19.4326,
-  //     lng: -99.1332,
-  //     popupText: 'CDMX - Hotel Ejemplo',
-  //     type: 'hotel' as 'hotel',
-  //     feature_1: 'Feature 1',
-  //     feature_2: 'Feature 2',
-  //     feature_3: 'Feature 3',
-  //     feature_4: 'Feature 4',
-  //     name: 'Hotel Ejemplo',
-  //     description: 'Un hotel de ejemplo en CDMX',
-  //     status: "Abierto" as "Abierto" | "Cerrado",
-  //     fecha: '2024-06-01',
-  //     closingTime: '22:00',
-  //     img: 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     _id: '2',
-  //     lat: 19.4375,
-  //     lng: -99.135,
-  //     popupText: 'Restaurante Buen Sabor',
-  //     type: 'restaurante' as 'restaurante',
-  //     feature_1: 'Feature 1',
-  //     feature_2: 'Feature 2',
-  //     feature_3: 'Feature 3',
-  //     feature_4: 'Feature 4',
-  //     name: 'Restaurante Buen Sabor',
-  //     description: 'Un restaurante de ejemplo',
-  //     status: "Abierto" as "Abierto" | "Cerrado",
-  //     fecha: '2024-06-01',
-  //     closingTime: '23:00',
-  //     img: 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     _id: '3',
-  //     lat: 19.434,
-  //     lng: -99.14,
-  //     popupText: 'Tour en bicicleta',
-  //     type: 'actividad' as 'actividad',
-  //     feature_1: 'Feature 1',
-  //     feature_2: 'Feature 2',
-  //     feature_3: 'Feature 3',
-  //     feature_4: 'Feature 4',
-  //     name: 'Tour en bicicleta',
-  //     description: 'Una actividad de ejemplo',
-  //     status: "Abierto" as "Abierto" | "Cerrado",
-  //     fecha: '2024-06-02',
-  //     closingTime: '18:00',
-  //     img: 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     _id: '4',
-  //     lat: 19.433,
-  //     lng: -99.132,
-  //     popupText: 'Mi ubicación',
-  //     type: 'me' as 'me',
-  //     feature_1: 'Feature 1',
-  //     feature_2: 'Feature 2',
-  //     feature_3: 'Feature 3',
-  //     feature_4: 'Feature 4',
-  //     name: 'Mi ubicación',
-  //     description: 'Esta es mi ubicación',
-  //     status: "Abierto" as "Abierto" | "Cerrado",
-  //     fecha: '2024-06-01',
-  //     closingTime: '00:00',
-  //     img: 'https://via.placeholder.com/150'
-  //   }
-  // ];
 
   // Estado para manejar la ubicación seleccionada
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -87,54 +17,109 @@ const NuevaRuta = () => {
     const [selectedEventoId, setSelectedEventoId] = useState<string | null>(null);
     const selectedEvento = eventosData.find(e => e._id === selectedEventoId);
   
-    // Fetch eventos desde tu API interna (Next.js route)
     useEffect(() => {
-      async function fetchEventos() {
+      async function fetchAllData() {
         try {
-          const res = await fetch('/api/servicios');
-          const data = await res.json();
-  
-          // data.eventos es el arreglo que devuelve tu API
-          const eventos = data.eventos;
-  
-          const locs: Servicio[] = eventos.map((item: any): Servicio => {
-          const { status, closingTime } = getEstadoYHoraCierre(item.horarios, item.fecha); // función que tú defines
-  
-          return {
-            _id: item._id,
-            lat: item.coordenadas.lat,
-            lng: item.coordenadas.long,
-            name: item.nombre,
-            rating: item.calificacion ?? 0,
-            reviewCount: item.comentarios?.length ?? 0,
-            feature_1: item.categoria?.nombre || '',
-            feature_2: item.tipo?.nombre || '',
-            feature_3: item.subtipo?.nombre || '',
-            status,
-            fecha: item.fecha ? item.fecha.descripcion : '',
-            closingTime,
-            type: 'actividad',
-            img: item.img_profile,
-          };
-        });
-  
-          
-  
-          setLocations(locs);
-          setEventosData(eventos);
+          const [resServicios, resHoteles, resRestaurantes] = await Promise.all([
+            fetch('/api/servicios'),
+            fetch('/api/hotel'),
+            fetch('/api/restaurante')
+          ]);
+
+          const [dataServicios, dataHoteles, dataRestaurantes] = await Promise.all([
+            resServicios.json(),
+            resHoteles.json(),
+            resRestaurantes.json()
+          ]);
+
+          const eventos = dataServicios.eventos || [];
+          const hoteles = dataHoteles.hoteles || [];
+          const restaurantes = dataRestaurantes.restaurantes || [];
+
+          const serviciosMapped: Servicio[] = eventos.map((item: any): Servicio => {
+            const { status, closingTime } = getEstadoYHoraCierre(item.horarios, item.fecha);
+
+            return {
+              _id: item._id,
+              lat: item.coordenadas.lat,
+              lng: item.coordenadas.long,
+              name: item.nombre,
+              rating: item.calificacion ?? 0,
+              reviewCount: item.comentarios?.length ?? 0,
+              feature_1: item.categoria?.nombre || '',
+              feature_2: item.tipo?.nombre || '',
+              feature_3: item.subtipo?.nombre || '',
+              status,
+              fecha: item.fecha ? item.fecha.descripcion : '',
+              closingTime,
+              type: 'actividad',
+              img: item.img_profile,
+            };
+          });
+
+          const hotelesMapped: Servicio[] = hoteles.map((item: any): Servicio => {
+            const { status, closingTime } = getEstadoYHoraCierre(item.horarios, null);
+            return {
+              _id: item._id,
+              lat: item.coordenadas.lat,
+              lng: item.coordenadas.long,
+              name: item.nombre,
+              rating: item.calificacion ?? 0,
+              reviewCount: 0,
+              feature_1: 'Hotel',
+              feature_2: '',
+              feature_3: '',
+              status,
+              fecha: '',
+              closingTime,
+              type: 'hotel',
+              img: item.img_profile,
+            };
+          });
+
+          const restaurantesMapped: Servicio[] = restaurantes.map((item: any): Servicio => {
+            const { status, closingTime } = getEstadoYHoraCierre(item.horarios, null);
+            return {
+              _id: item._id,
+              lat: item.coordenadas.lat,
+              lng: item.coordenadas.long,
+              name: item.nombre,
+              rating: item.calificacion ?? 0,
+              reviewCount: 0,
+              feature_1: 'Restaurante',
+              feature_2: '',
+              feature_3: '',
+              status,
+              fecha: '',
+              closingTime,
+              type: 'restaurante',
+              img: item.img_profile,
+            };
+          });
+
+          const allLocations = [...serviciosMapped, ...hotelesMapped, ...restaurantesMapped];
+
+          setLocations(allLocations);
+          // setEventosData(eventos);
+          setEventosData([...eventos, ...hoteles, ...restaurantes]);
         } catch (error) {
-          console.error('Error cargando eventos:', error);
+          console.error('Error cargando datos del mapa:', error);
         }
       }
-  
-      fetchEventos();
+
+      fetchAllData();
     }, []);
 
     useEffect(() => {
       console.log(locations);
     }, [locations]);
 
-  const [servicios, setServicios] = useState<MapProps[]>([]);
+  const [servicios, setServicios] = useState<Servicio[]>([]);
+
+  useEffect(() => {
+    // Cuando locations cambia, actualiza servicios
+    setServicios(locations);
+  }, [locations]);
 
   const handleLocationSelect = (id: string) => {
     console.log(`Location selected: ${id}`);
