@@ -9,15 +9,19 @@ En este primer prototipo se desarrolló el generador inteligente de itinerarios.
 También se avanzó en gran parte de la interfaz de usuario, así como en el sistema de login y registro de clientes, y algunos elementos del módulo de reservaciones y pagos.
 
 DISEÑO DEL SISTEMA:
-![Logo](https://drive.google.com/file/d/1yab8k0g1w9mvY_XGNiWdvYijHa8ZppoT/view?usp=sharing)
 
-![Logo](https://drive.google.com/file/d/1r1grulSx8vb0WbCWvuRbKu0hA6P577G_/view?usp=sharing)
+![Logo](https://github.com/PedroUgalde/imagenes-/blob/main/cachirul.jpg)
+
+ARQUITECTURA DEL SISTEMA:
+
+![Logo](https://github.com/PedroUgalde/imagenes-/blob/main/arquitectura.jpg)
 
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 REQUERIMIENTOS
+
 Uso de la versión 3.12.1 de anaconda para la parte de pruebas del algoritmo. 
 
 ○ Uso de node v20.14.0 para enrutado del sitio. 
