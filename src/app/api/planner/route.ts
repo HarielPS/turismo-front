@@ -71,19 +71,38 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const backendUrl = process.env.NEXT_PUBLIC_RUTA_BACK;
+
+    if (!backendUrl) {
+      return NextResponse.json(
+        { error: 'Backend URL not configured' },
+        { status: 500 }
+      );
+    }
     
-    const res = await fetch(`${backendUrl}/planner/personalizado`, {
+    const res = await fetch(`${backendUrl}/planner`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         ...body,
-        id_usuario: decoded.sub
+        id_usuario: decoded.sub,
+        presupuesto: body.presupuesto || [{ 
+          hotel: body.hotel, 
+          restaurantes: body.restaurantes, 
+          servicio: body.servicio 
+        }],
       }),
     });
 
-    const data = await res.json();
+     // Extrae el texto de la respuesta primero
+    const responseText = await res.text();
+    if (!res.ok) {
+      console.error("Error en la respuesta del backend:", responseText);
+      throw new Error(`Error ${res.status}: ${responseText}`);
+    }
+    
+    const data = responseText ? JSON.parse(responseText) : {};
     
     return NextResponse.json(data);
     

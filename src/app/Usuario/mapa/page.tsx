@@ -145,6 +145,10 @@ export default function MapaPage() {
           };
         });
 
+        console.log('Servicios:', serviciosMapped);
+        console.log('Hoteles:', hotelesMapped);
+        console.log('Restaurantes:', restaurantesMapped);
+
         const allLocations = [...serviciosMapped, ...hotelesMapped, ...restaurantesMapped];
 
         setLocations(allLocations);

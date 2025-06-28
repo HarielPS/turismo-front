@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface Actividad {
@@ -17,55 +17,118 @@ interface Guardado {
 
 const GuardadosPage = () => {
   const [guardados, setGuardados] = useState<Guardado[]>([
-    {
-      id: 'ruta-001',
-      status: 'reserva',
-      fecha_guardado: '2025-05-10',
-      actividades: [
-        { id: 'act-001', tipo: 'hotel' },
-        { id: 'act-002', tipo: 'servicio' },
-        { id: 'act-003', tipo: 'alimento' },
-      ],
-    },
-    {
-      id: 'ruta-002',
-      status: 'eliminar',
-      fecha_guardado: '2025-05-14',
-      actividades: [
-        { id: 'act-004', tipo: 'servicio' },
-        { id: 'act-005', tipo: 'alimento' },
-      ],
-    },
-    {
-      id: 'ruta-003',
-      status: 'reserva',
-      fecha_guardado: '2025-05-19',
-      actividades: [
-        { id: 'act-006', tipo: 'hotel' },
-        { id: 'act-007', tipo: 'hotel' },
-        { id: 'act-008', tipo: 'servicio' },
-      ],
-    },
+    // {
+    //   id: 'ruta-001',
+    //   status: 'reserva',
+    //   fecha_guardado: '2025-05-10',
+    //   actividades: [
+    //     { id: 'act-001', tipo: 'hotel' },
+    //     { id: 'act-002', tipo: 'servicio' },
+    //     { id: 'act-003', tipo: 'alimento' },
+    //   ],
+    // },
+    // {
+    //   id: 'ruta-002',
+    //   status: 'eliminar',
+    //   fecha_guardado: '2025-05-14',
+    //   actividades: [
+    //     { id: 'act-004', tipo: 'servicio' },
+    //     { id: 'act-005', tipo: 'alimento' },
+    //   ],
+    // },
+    // {
+    //   id: 'ruta-003',
+    //   status: 'reserva',
+    //   fecha_guardado: '2025-05-19',
+    //   actividades: [
+    //     { id: 'act-006', tipo: 'hotel' },
+    //     { id: 'act-007', tipo: 'hotel' },
+    //     { id: 'act-008', tipo: 'servicio' },
+    //   ],
+    // },
   ]);
 
-  const eliminarGuardado = (id: string) => {
+  useEffect(() => {
+    const fetchGuardados = async () => {
+      try {
+        const resUser = await fetch('/api/userinfo', { method: 'POST' });
+        const { userId } = await resUser.json();
+
+        const res = await fetch('/api/userinfo/guardar-ruta', { method: 'GET' });
+        const data = await res.json();
+
+        if (res.ok) {
+          setGuardados(data.guardados || []);
+        } else {
+          console.error('Error al cargar rutas:', data.error);
+        }
+      } catch (err) {
+        console.error('Error inesperado al cargar guardados:', err);
+      }
+    };
+
+    fetchGuardados();
+  }, []);
+
+  // const eliminarGuardado = (id: string) => {
+  //   setGuardados(prev =>
+  //     prev.map(g => (g.id === id ? { ...g, status: 'eliminar' } : g))
+  //   );
+  // };
+
+  const eliminarGuardado = async (id: string) => {
     setGuardados(prev =>
-      prev.map(g => (g.id === id ? { ...g, status: 'eliminar' } : g))
+      prev.map(g => g.id === id ? { ...g, status: 'eliminar' } : g)
     );
+
+    const resUser = await fetch('/api/userinfo', { method: 'POST' });
+    const { userId } = await resUser.json();
+
+    await fetch(`/api/userinfo/actualizar-ruta/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'eliminar' }),
+    });
   };
 
-  const editarActividad = (rutaId: string, actId: string, estado: 'reserva' | 'eliminar') => {
-    setGuardados(prev =>
-      prev.map(g => {
-        if (g.id !== rutaId) return g;
-        return {
-          ...g,
-          actividades: g.actividades.map(a =>
-            a.id === actId ? { ...a, estado } : a
-          ),
-        };
-      })
-    );
+
+  // const editarActividad = (rutaId: string, actId: string, estado: 'reserva' | 'eliminar') => {
+  //   setGuardados(prev =>
+  //     prev.map(g => {
+  //       if (g.id !== rutaId) return g;
+  //       return {
+  //         ...g,
+  //         actividades: g.actividades.map(a =>
+  //           a.id === actId ? { ...a, estado } : a
+  //         ),
+  //       };
+  //     })
+  //   );
+  // };
+
+  const editarActividad = async (rutaId: string, actId: string, estado: 'reserva' | 'eliminar') => {
+    const updated = guardados.map(g => {
+      if (g.id !== rutaId) return g;
+      return {
+        ...g,
+        actividades: g.actividades.map(a =>
+          a.id === actId ? { ...a, estado } : a
+        ),
+      };
+    });
+
+    setGuardados(updated);
+
+    const rutaActualizada = updated.find(g => g.id === rutaId);
+
+    const resUser = await fetch('/api/userinfo', { method: 'POST' });
+    const { userId } = await resUser.json();
+
+    await fetch(`/api/userinfo/actualizar-ruta/${rutaId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ actividades: rutaActualizada?.actividades }),
+    });
   };
 
   return (
@@ -116,8 +179,8 @@ const Guardados: React.FC<{
             <div className="text-sm mb-3">
               <p className="font-semibold text-accent mb-1">Actividades:</p>
               <ul className="list-disc pl-4 space-y-1">
-                {g.actividades.map((a) => (
-                  <li key={a.id}>
+                {g.actividades.map((a, i) => (
+                  <li key={`${a.id}-${i}`}>
                     ID: {a.id} - <span className="capitalize">{a.tipo}</span>
                     {a.estado === 'eliminar' && <span className="text-danger ml-2">(Eliminada)</span>}
                     {a.estado === 'reserva' && <span className="text-secondary ml-2">(Reservada)</span>}
@@ -154,7 +217,7 @@ const Guardados: React.FC<{
 
       {/* Modal */}
       {modalRuta && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background-80">
+        <div className="fixed inset-0 overflow-auto z-50 flex items-center justify-center bg-background-80">
           <div className="bg-detail p-6 rounded-xl shadow-lg w-full max-w-md">
             <h2 className="text-xl font-bold text-primary mb-4">Editar Ruta: {modalRuta.id}</h2>
             <ul className="space-y-4">
